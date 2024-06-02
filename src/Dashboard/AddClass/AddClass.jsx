@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic();
 
     const {
         register,
@@ -12,6 +15,24 @@ const AddClass = () => {
     } = useForm();
     const addClass = (data) => {
         console.log(data);
+        const { title, description, image, price } = data;
+        axiosPublic
+            .post("/Classes", {
+                name: user?.displayName,
+                email: user?.email,
+                title: title,
+                description: description,
+                image: image,
+                price: price,
+                status: "pending",
+                enroll: 0,
+            })
+            .then((res) => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    toast.success("Class Added Successfully");
+                }
+            });
     };
 
     return (
@@ -20,11 +41,11 @@ const AddClass = () => {
                 <form onSubmit={handleSubmit(addClass)}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
-                            <input type="text" defaultValue={user.displayName} className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" disabled />
+                            <input type="text" defaultValue={user?.displayName} className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" disabled />
                         </div>
 
                         <div>
-                            <input type="email" defaultValue={user.email} className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" disabled />
+                            <input type="email" defaultValue={user?.email} className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" disabled />
                         </div>
 
                         <div>
@@ -37,7 +58,7 @@ const AddClass = () => {
                         </div>
 
                         <div>
-                            <input placeholder="Price" type="text" className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("price", { required: "price is required" })} aria-invalid={errors.price ? "true" : "false"} />
+                            <input placeholder="Price" type="number" className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("price", { required: "price is required" })} aria-invalid={errors.price ? "true" : "false"} />
                             {errors.price && (
                                 <p className="text-red-600" role="alert">
                                     {errors.price.message}
