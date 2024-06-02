@@ -15,6 +15,7 @@ import Dashboard from "./Dashboard/Dashboard.jsx";
 import MyProfile from "./Dashboard/MyProfile/MyProfile.jsx";
 import BeforeSignIn from "./Protected/BeforeSignIn.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Users from "./Dashboard/Users/Users.jsx";
 
 const router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/my-profile",
                 element: <MyProfile></MyProfile>,
+            },
+            {
+                path: "/dashboard/users",
+                element: <Users></Users>,
             },
         ],
     },

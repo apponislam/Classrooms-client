@@ -17,6 +17,7 @@ const MyProfile = () => {
             return res.data;
         },
     });
+
     const [prolieuser] = mainuser;
 
     if (isLoading) {
