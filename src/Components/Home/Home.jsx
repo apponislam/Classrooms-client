@@ -1,3 +1,4 @@
+import BeTeacher from "./BeTeacher";
 import Companies from "./Companies";
 import Slider from "./Slider";
 
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <Slider></Slider>
             <Companies></Companies>
+            <BeTeacher></BeTeacher>
         </div>
     );
 };
