@@ -17,6 +17,7 @@ import BeforeSignIn from "./Protected/BeforeSignIn.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Users from "./Dashboard/Users/Users.jsx";
 import AddClass from "./Dashboard/AddClass/AddClass.jsx";
+import AllClasses from "./Dashboard/AllClasses/AllClasses.jsx";
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/add-class",
                 element: <AddClass></AddClass>,
+            },
+            {
+                path: "/dashboard/all-classes",
+                element: <AllClasses></AllClasses>,
             },
         ],
     },
