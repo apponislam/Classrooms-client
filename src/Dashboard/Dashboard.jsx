@@ -19,7 +19,6 @@ const Dashboard = () => {
                     </label>
                     <div className="m-2 md:m-4">
                         <Outlet></Outlet>
-                        <h1>This Is Dashboard</h1>
                     </div>
                 </div>
                 <div className="drawer-side">

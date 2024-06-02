@@ -14,6 +14,7 @@ import AfterSignIn from "./Protected/AfterSignIn.jsx";
 import Dashboard from "./Dashboard/Dashboard.jsx";
 import MyProfile from "./Dashboard/MyProfile/MyProfile.jsx";
 import BeforeSignIn from "./Protected/BeforeSignIn.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createBrowserRouter([
     {
@@ -58,15 +59,19 @@ const router = createBrowserRouter([
     },
 ]);
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <AuthProvider>
-            <HelmetProvider>
-                <>
-                    <RouterProvider router={router} />
-                    <ToastContainer />
-                </>
-            </HelmetProvider>
+            <QueryClientProvider client={queryClient}>
+                <HelmetProvider>
+                    <>
+                        <RouterProvider router={router} />
+                        <ToastContainer />
+                    </>
+                </HelmetProvider>
+            </QueryClientProvider>
         </AuthProvider>
     </React.StrictMode>
 );
