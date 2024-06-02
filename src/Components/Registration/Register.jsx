@@ -16,7 +16,7 @@ const Register = () => {
         formState: { errors },
         handleSubmit,
     } = useForm();
-    const signInBtn = (data) => {
+    const registerBtn = (data) => {
         console.log(data);
         const { name, image: imagelink, number, email, password } = data;
         console.log(name, imagelink, number, email, password);
@@ -71,7 +71,7 @@ const Register = () => {
         <div className="container mx-auto">
             <div className="h-screen flex items-center justify-center">
                 <div className="w-96 border border-[#00203f] p-4 rounded-2xl shadow-2xl">
-                    <form onSubmit={handleSubmit(signInBtn)}>
+                    <form onSubmit={handleSubmit(registerBtn)}>
                         <div className="mb-4">
                             <input placeholder="Name" type="text" className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("name", { required: true })} aria-invalid={errors.name ? "true" : "false"} />
                             {errors.name?.type === "required" && (
