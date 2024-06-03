@@ -18,6 +18,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Users from "./Dashboard/Users/Users.jsx";
 import AddClass from "./Dashboard/AddClass/AddClass.jsx";
 import AllClasses from "./Dashboard/AllClasses/AllClasses.jsx";
+import TechOn from "./Components/TechOn/TechOn.jsx";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
                     <AfterSignIn>
                         <Register></Register>
                     </AfterSignIn>
+                ),
+            },
+            {
+                path: "/technow",
+                element: (
+                    <BeforeSignIn>
+                        <TechOn></TechOn>
+                    </BeforeSignIn>
                 ),
             },
         ],
