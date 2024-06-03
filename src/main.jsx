@@ -19,6 +19,7 @@ import Users from "./Dashboard/Users/Users.jsx";
 import AddClass from "./Dashboard/AddClass/AddClass.jsx";
 import AllClasses from "./Dashboard/AllClasses/AllClasses.jsx";
 import TechOn from "./Components/TechOn/TechOn.jsx";
+import TeacherRequest from "./Dashboard/TeacherRequest/TeacherRequest.jsx";
 
 const router = createBrowserRouter([
     {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/all-classes",
                 element: <AllClasses></AllClasses>,
+            },
+            {
+                path: "/dashboard/requests",
+                element: <TeacherRequest></TeacherRequest>,
             },
         ],
     },

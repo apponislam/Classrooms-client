@@ -11,7 +11,7 @@ const MyProfile = () => {
     const email = user.email;
     // console.log(email);
     const { data: mainuser = [], isLoading } = useQuery({
-        queryKey: ["user"],
+        queryKey: ["mainuser"],
         queryFn: async () => {
             const res = await axiosPublic.get(`/Users/email/${email}`);
             return res.data;

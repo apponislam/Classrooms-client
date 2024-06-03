@@ -12,7 +12,7 @@ const AllClasses = () => {
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: ["user"],
+        queryKey: ["allClasses"],
         queryFn: async () => {
             const res = await axiosPublic.get("/Classes");
             return res.data;

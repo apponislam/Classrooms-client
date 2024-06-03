@@ -6,7 +6,7 @@ const Users = () => {
     const axiosPublic = useAxiosPublic();
 
     const { data: users = [], isLoading } = useQuery({
-        queryKey: ["user"],
+        queryKey: ["users"],
         queryFn: async () => {
             const res = await axiosPublic.get("/Users");
             return res.data;
