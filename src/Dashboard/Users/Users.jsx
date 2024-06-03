@@ -1,11 +1,16 @@
 import { MoonLoader } from "react-spinners";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const Users = () => {
     const axiosPublic = useAxiosPublic();
 
-    const { data: users = [], isLoading } = useQuery({
+    const {
+        data: users = [],
+        isLoading,
+        refetch,
+    } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
             const res = await axiosPublic.get("/Users");
@@ -13,7 +18,37 @@ const Users = () => {
         },
     });
 
-    console.log(users);
+    const makeAdmin = (id) => {
+        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to make him the admin",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic
+                    .patch(`/Users/${id}`, {
+                        role: "admin",
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                title: "Good!",
+                                text: "Admin has been created.",
+                                icon: "success",
+                            });
+                            refetch();
+                        }
+                    })
+                    .catch((error) => console.log(error));
+            }
+        });
+    };
 
     if (isLoading) {
         return (
@@ -53,7 +88,7 @@ const Users = () => {
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
                                     <td>
-                                        <button disabled={user.role === "admin"} className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">
+                                        <button onClick={() => makeAdmin(user._id)} disabled={user.role === "admin"} className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">
                                             Make Admin
                                         </button>
                                     </td>

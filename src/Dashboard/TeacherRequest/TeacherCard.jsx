@@ -29,10 +29,10 @@ const TeacherCard = ({ teacher, approveBtn, rejectedBtn }) => {
             </div>
             <div className="grow flex flex-col justify-end">
                 <div className="grid items-center grid-cols-2 gap-4 mb-4">
-                    <button disabled={status === "approved" || status === "rejected"} onClick={() => approveBtn(_id)} className="btn bg-green-600 hover:bg-green-700 text-white">
+                    <button disabled={status === "accepted" || status === "rejected"} onClick={() => approveBtn(_id)} className="btn bg-green-600 hover:bg-green-700 text-white">
                         Approve
                     </button>
-                    <button disabled={status === "approved" || status === "rejected"} onClick={() => rejectedBtn(_id)} className="btn bg-red-600 hover:bg-red-700 text-white">
+                    <button disabled={status === "accepted" || status === "rejected"} onClick={() => rejectedBtn(_id)} className="btn bg-red-600 hover:bg-red-700 text-white">
                         Reject
                     </button>
                 </div>

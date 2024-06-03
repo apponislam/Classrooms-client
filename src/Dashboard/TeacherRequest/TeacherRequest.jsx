@@ -2,11 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { MoonLoader } from "react-spinners";
 import TeacherCard from "./TeacherCard";
+import Swal from "sweetalert2";
 
 const TeacherRequest = () => {
     const axiosPublic = useAxiosPublic();
 
-    const { data: teacherPending = [], isLoading } = useQuery({
+    const {
+        data: teacherPending = [],
+        isLoading,
+        refetch,
+    } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
             const res = await axiosPublic.get("/PendingUsers");
@@ -15,11 +20,67 @@ const TeacherRequest = () => {
     });
 
     const approveBtn = (id) => {
-        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to accept",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, accept",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic
+                    .patch(`/PendingUsers/${id}`, {
+                        role: "teacher",
+                        status: "accepted",
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                title: "Good!",
+                                text: "Teacher has been accepted",
+                                icon: "success",
+                            });
+                            refetch();
+                        }
+                    })
+                    .catch((error) => console.log(error));
+            }
+        });
     };
 
     const rejectedBtn = (id) => {
-        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to reject the request?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, reject",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic
+                    .patch(`/PendingUsers/${id}`, {
+                        role: "student",
+                        status: "rejected",
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                title: "Good!",
+                                text: "Teacher has been rejected",
+                                icon: "success",
+                            });
+                            refetch();
+                        }
+                    })
+                    .catch((error) => console.log(error));
+            }
+        });
     };
 
     if (isLoading) {
