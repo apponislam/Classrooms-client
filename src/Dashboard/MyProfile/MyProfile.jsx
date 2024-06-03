@@ -9,7 +9,7 @@ const MyProfile = () => {
     const axiosPublic = useAxiosPublic();
 
     const email = user.email;
-    console.log(email);
+    // console.log(email);
     const { data: mainuser = [], isLoading } = useQuery({
         queryKey: ["user"],
         queryFn: async () => {

@@ -1,12 +1,27 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-// import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
+import { updateProfile } from "firebase/auth";
+import { toast } from "react-toastify";
+import { MoonLoader } from "react-spinners";
+import { useQuery } from "@tanstack/react-query";
 // import { toast } from "react-toastify";
 
 const TechOn = () => {
     const { user } = useContext(AuthContext);
-    // const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
+
+    const { data: mainuser = [], isLoading } = useQuery({
+        queryKey: ["user"],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/Users/email/${user.email}`);
+            return res.data;
+        },
+    });
+
+    const [prolieuser] = mainuser;
+    console.log(prolieuser);
 
     const {
         register,
@@ -15,25 +30,41 @@ const TechOn = () => {
     } = useForm();
     const beATeacher = (data) => {
         console.log(data);
-        // const { title, description, image, price } = data;
-        // axiosPublic
-        //     .put("/Classes", {
-        //         name: user?.displayName,
-        //         email: user?.email,
-        //         title: title,
-        //         description: description,
-        //         image: image,
-        //         price: price,
-        //         status: "pending",
-        //         enroll: 0,
-        //     })
-        //     .then((res) => {
-        //         console.log(res.data);
-        //         if (res.data.insertedId) {
-        //             toast.success("Class Added Successfully");
-        //         }
-        //     });
+
+        updateProfile(user, {
+            displayName: data.name,
+            photoURL: data.image,
+        })
+            .then(() => {
+                console.log("updated on firebase");
+                axiosPublic
+                    .put(`/Users/email/${user.email}`, {
+                        category: data.category,
+                        experience: data.experience,
+                        image: data.image,
+                        name: data.name,
+                        title: data.title,
+                        status: "pending",
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
+                            toast.success("Request send Successfully");
+                        }
+                    });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
+
+    if (isLoading) {
+        return (
+            <div className="h-screen flex items-center justify-center">
+                <MoonLoader color="#adefd1" size={40} />
+            </div>
+        );
+    }
 
     return (
         <div className="container mx-auto">
@@ -115,7 +146,9 @@ const TechOn = () => {
                             </div>
                         </div>
 
-                        <input className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4" type="submit" value="Request for Teacher" />
+                        {prolieuser?.status === "rejected" ? <input className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full" type="submit" value="Request to Another" /> : <input className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full" type="submit" value="Submit for Review" />}
+
+                        {/* <input className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full" type="submit" value="Submit for Review" /> */}
                     </form>
                 </div>
             </div>

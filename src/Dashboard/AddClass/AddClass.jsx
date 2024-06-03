@@ -84,8 +84,7 @@ const AddClass = () => {
                             )}
                         </div>
                     </div>
-
-                    <input className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4" type="submit" value="Add Class" />
+                    <input className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full" type="submit" value="Add Class" />
                 </form>
             </div>
         </div>
