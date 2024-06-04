@@ -20,6 +20,8 @@ import AddClass from "./Dashboard/AddClass/AddClass.jsx";
 import AllClasses from "./Dashboard/AllClasses/AllClasses.jsx";
 import TechOn from "./Components/TechOn/TechOn.jsx";
 import TeacherRequest from "./Dashboard/TeacherRequest/TeacherRequest.jsx";
+import TeacherClasses from "./Dashboard/TeacherClasses/TeacherClasses.jsx";
+import TeacherClassUpdate from "./Dashboard/TeacherClasses/TeacherClassUpdate.jsx";
 
 const router = createBrowserRouter([
     {
@@ -83,6 +85,15 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/requests",
                 element: <TeacherRequest></TeacherRequest>,
+            },
+            {
+                path: "/dashboard/my-class",
+                element: <TeacherClasses></TeacherClasses>,
+            },
+            {
+                path: "/dashboard/my-class/update/:id",
+                element: <TeacherClassUpdate></TeacherClassUpdate>,
+                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
         ],
     },
