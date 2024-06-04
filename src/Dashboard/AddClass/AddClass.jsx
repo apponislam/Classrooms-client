@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -31,6 +33,7 @@ const AddClass = () => {
                 console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success("Class Added Successfully");
+                    navigate("/dashboard/my-class");
                 }
             });
     };

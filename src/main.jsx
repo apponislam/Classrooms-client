@@ -22,6 +22,7 @@ import TechOn from "./Components/TechOn/TechOn.jsx";
 import TeacherRequest from "./Dashboard/TeacherRequest/TeacherRequest.jsx";
 import TeacherClasses from "./Dashboard/TeacherClasses/TeacherClasses.jsx";
 import TeacherClassUpdate from "./Dashboard/TeacherClasses/TeacherClassUpdate.jsx";
+import ApprovedClasses from "./Components/ApprovedClasses/ApprovedClasses.jsx";
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
                         <TechOn></TechOn>
                     </BeforeSignIn>
                 ),
+            },
+            {
+                path: "/AllClass",
+                element: <ApprovedClasses></ApprovedClasses>,
             },
         ],
     },

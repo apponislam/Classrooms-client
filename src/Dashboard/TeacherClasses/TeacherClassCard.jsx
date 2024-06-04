@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const TeacherClassCard = ({ Class }) => {
+const TeacherClassCard = ({ Class, deleteMyClass }) => {
     const { _id, name, email, title, description, image, status, price } = Class;
 
     return (
@@ -31,7 +31,9 @@ const TeacherClassCard = ({ Class }) => {
                     <Link to={`/dashboard/my-class/update/${_id}`}>
                         <button className="btn w-full bg-green-600 hover:bg-green-700 text-white">Update</button>
                     </Link>
-                    <button className="btn bg-red-600 hover:bg-red-700 text-white">Delete</button>
+                    <button onClick={() => deleteMyClass(_id)} className="btn bg-red-600 hover:bg-red-700 text-white">
+                        Delete
+                    </button>
                 </div>
                 {status === "pending" || status === "rejected" ? (
                     <button disabled className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full">
@@ -49,6 +51,7 @@ const TeacherClassCard = ({ Class }) => {
 
 TeacherClassCard.propTypes = {
     Class: PropTypes.object,
+    deleteMyClass: PropTypes.func,
 };
 
 export default TeacherClassCard;
