@@ -23,6 +23,8 @@ import TeacherRequest from "./Dashboard/TeacherRequest/TeacherRequest.jsx";
 import TeacherClasses from "./Dashboard/TeacherClasses/TeacherClasses.jsx";
 import TeacherClassUpdate from "./Dashboard/TeacherClasses/TeacherClassUpdate.jsx";
 import ApprovedClasses from "./Components/ApprovedClasses/ApprovedClasses.jsx";
+import TeacherClassDetails from "./Dashboard/TeacherClasses/TeacherClassDetails.jsx";
+import SeeProgress from "./Dashboard/AllClasses/SeeProgress.jsx";
 
 const router = createBrowserRouter([
     {
@@ -88,6 +90,11 @@ const router = createBrowserRouter([
                 element: <AllClasses></AllClasses>,
             },
             {
+                path: "/dashboard/class/:id",
+                element: <SeeProgress></SeeProgress>,
+                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+            },
+            {
                 path: "/dashboard/requests",
                 element: <TeacherRequest></TeacherRequest>,
             },
@@ -98,6 +105,11 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/my-class/update/:id",
                 element: <TeacherClassUpdate></TeacherClassUpdate>,
+                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+            },
+            {
+                path: "/dashboard/my-class/:id",
+                element: <TeacherClassDetails></TeacherClassDetails>,
                 loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
         ],
