@@ -25,6 +25,9 @@ import TeacherClassUpdate from "./Dashboard/TeacherClasses/TeacherClassUpdate.js
 import ApprovedClasses from "./Components/ApprovedClasses/ApprovedClasses.jsx";
 import TeacherClassDetails from "./Dashboard/TeacherClasses/TeacherClassDetails.jsx";
 import SeeProgress from "./Dashboard/AllClasses/SeeProgress.jsx";
+import ApprovedClassDetails from "./Components/ApprovedClasses/ApprovedClassDetails.jsx";
+import MyEnrollClasses from "./Dashboard/MyEnrollClasses/MyEnrollClasses.jsx";
+import Payment from "./Components/ApprovedClasses/Payment.jsx";
 
 const router = createBrowserRouter([
     {
@@ -62,6 +65,24 @@ const router = createBrowserRouter([
             {
                 path: "/AllClass",
                 element: <ApprovedClasses></ApprovedClasses>,
+            },
+            {
+                path: "/class/:id",
+                element: (
+                    <BeforeSignIn>
+                        <ApprovedClassDetails></ApprovedClassDetails>
+                    </BeforeSignIn>
+                ),
+                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+            },
+            {
+                path: "/payment/:id",
+                element: (
+                    <BeforeSignIn>
+                        <Payment></Payment>
+                    </BeforeSignIn>
+                ),
+                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
         ],
     },
@@ -111,6 +132,10 @@ const router = createBrowserRouter([
                 path: "/dashboard/my-class/:id",
                 element: <TeacherClassDetails></TeacherClassDetails>,
                 loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+            },
+            {
+                path: "/dashboard/my-enroll",
+                element: <MyEnrollClasses></MyEnrollClasses>,
             },
         ],
     },

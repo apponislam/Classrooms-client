@@ -22,7 +22,7 @@ const Total = () => {
     });
 
     const totalEnroll = approvedClasses.reduce((accumulator, currentValue) => accumulator + currentValue.enroll, 0);
-    console.log(totalEnroll);
+    // console.log(totalEnroll);
 
     if (isLoading) {
         return (

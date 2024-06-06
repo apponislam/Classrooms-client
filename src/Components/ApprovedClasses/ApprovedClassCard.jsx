@@ -26,7 +26,7 @@ const ApprovedClassCard = ({ Class }) => {
                 </p>
             </div>
             <div className="grow flex flex-col justify-end">
-                <Link to={`/Enroll/${_id}`}>
+                <Link to={`/class/${_id}`}>
                     <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full">Enroll</button>
                 </Link>
             </div>
