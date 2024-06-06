@@ -8,21 +8,6 @@ const ApprovedClassDetails = () => {
 
     const { _id, name, email, title, description, image, status, price, enroll } = Class;
 
-    // const payButton = async () => {
-    //     console.log("Pay Button Clicked");
-    //     const stripe = await loadStripe(`${import.meta.env.VITE_STRIPE}`);
-
-    //     const response = await axiosPublic.post("/Payment", { Class });
-    //     const session = response.data;
-    //     const result = stripe.redirectToCheckout({
-    //         sessionId: session.id,
-    //     });
-    //     console.log(session);
-    //     if (result.error) {
-    //         console.log(result.error);
-    //     }
-    // };
-
     return (
         <div className="container mx-auto">
             <div className="mx-4 xl:mx-0 my-10 xl:my-20">

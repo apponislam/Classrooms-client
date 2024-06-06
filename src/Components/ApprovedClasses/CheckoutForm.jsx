@@ -2,7 +2,8 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CheckoutForm = () => {
     const Class = useLoaderData();
@@ -12,6 +13,7 @@ const CheckoutForm = () => {
     const elements = useElements();
     const axiosPublic = useAxiosPublic();
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     // console.log(Class);
     // console.log(user);
 
@@ -65,6 +67,31 @@ const CheckoutForm = () => {
             console.log(confirmError);
         } else {
             console.error(paymentIntent);
+            axiosPublic
+                .post("/PaymentInfo", {
+                    classId: Class._id,
+                    title: Class.title,
+                    teacherName: Class.name,
+                    teacherEmail: Class.email,
+                    image: Class.image,
+                    description: Class.description,
+                    email: user?.email,
+                    name: user?.displayName,
+                    price: paymentIntent.amount / 100,
+                    paymentID: paymentIntent.id,
+                })
+                .then((res) => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        toast.success("Payment Successfully");
+                        axiosPublic.patch(`/Classes/Enroll/${Class._id}`).then((response) => {
+                            console.log(response.data);
+                            if (response.data.modifiedCount) {
+                                navigate("/dashboard/myenroll-class");
+                            }
+                        });
+                    }
+                });
         }
     };
 

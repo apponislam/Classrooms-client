@@ -22,3 +22,13 @@ body {
     background-color: #00203f;
     color: white;
 }
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+.react-datepicker-popper {
+    left: 85px;
+    top: 85px;
+    z-index: 94;
+}

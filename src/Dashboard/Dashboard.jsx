@@ -56,7 +56,7 @@ const Dashboard = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/dashboard/my-enroll">
+                            <NavLink to="/dashboard/myenroll-class">
                                 <MdOutlineClass />
                                 My enroll class
                             </NavLink>

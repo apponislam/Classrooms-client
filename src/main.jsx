@@ -28,6 +28,7 @@ import SeeProgress from "./Dashboard/AllClasses/SeeProgress.jsx";
 import ApprovedClassDetails from "./Components/ApprovedClasses/ApprovedClassDetails.jsx";
 import MyEnrollClasses from "./Dashboard/MyEnrollClasses/MyEnrollClasses.jsx";
 import Payment from "./Components/ApprovedClasses/Payment.jsx";
+import MyEnrollClassDetails from "./Dashboard/MyEnrollClasses/MyEnrollClassDetails.jsx";
 
 const router = createBrowserRouter([
     {
@@ -134,8 +135,13 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
             {
-                path: "/dashboard/my-enroll",
+                path: "/dashboard/myenroll-class",
                 element: <MyEnrollClasses></MyEnrollClasses>,
+            },
+            {
+                path: "/dashboard/myenroll-class/:id",
+                element: <MyEnrollClassDetails></MyEnrollClassDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
         ],
     },

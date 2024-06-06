@@ -28,6 +28,8 @@ const AddClass = () => {
                 price: price,
                 status: "pending",
                 enroll: 0,
+                assignments: 0,
+                submitedAssignments: 0,
             })
             .then((res) => {
                 console.log(res.data);
