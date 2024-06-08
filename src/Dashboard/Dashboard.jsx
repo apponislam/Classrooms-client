@@ -1,5 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import { FaChalkboardTeacher, FaUsers } from "react-icons/fa";
+import { FaChalkboardTeacher, FaHome, FaUsers } from "react-icons/fa";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdClass, MdOutlineClass } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -36,7 +36,7 @@ const Dashboard = () => {
         );
     }
 
-    console.log(prolieuser?.role);
+    // console.log(prolieuser?.role);
 
     return (
         <div>
@@ -55,6 +55,12 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-[#00203f] text-white text-xl gap-2">
                         {/* Sidebar content here */}
+                        <li>
+                            <NavLink to="/">
+                                <FaHome />
+                                Home
+                            </NavLink>
+                        </li>
                         {prolieuser?.role === "admin" && (
                             <li>
                                 <NavLink to="/dashboard/requests">

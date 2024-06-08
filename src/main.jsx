@@ -30,6 +30,8 @@ import MyEnrollClasses from "./Dashboard/MyEnrollClasses/MyEnrollClasses.jsx";
 import Payment from "./Components/ApprovedClasses/Payment.jsx";
 import MyEnrollClassDetails from "./Dashboard/MyEnrollClasses/MyEnrollClassDetails.jsx";
 import DashboardHome from "./Dashboard/DashboardHome.jsx";
+import AdminRoute from "./Protected/AdminRoute.jsx";
+import TeacherRoute from "./Protected/TeacherRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -106,24 +108,44 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/users",
-                element: <Users></Users>,
+                element: (
+                    <AdminRoute>
+                        <Users></Users>
+                    </AdminRoute>
+                ),
             },
             {
                 path: "/dashboard/add-class",
-                element: <AddClass></AddClass>,
+                element: (
+                    <TeacherRoute>
+                        <AddClass></AddClass>
+                    </TeacherRoute>
+                ),
             },
             {
                 path: "/dashboard/all-classes",
-                element: <AllClasses></AllClasses>,
+                element: (
+                    <AdminRoute>
+                        <AllClasses></AllClasses>
+                    </AdminRoute>
+                ),
             },
             {
                 path: "/dashboard/class/:id",
-                element: <SeeProgress></SeeProgress>,
+                element: (
+                    <AdminRoute>
+                        <SeeProgress></SeeProgress>
+                    </AdminRoute>
+                ),
                 loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
             {
                 path: "/dashboard/requests",
-                element: <TeacherRequest></TeacherRequest>,
+                element: (
+                    <AdminRoute>
+                        <TeacherRequest></TeacherRequest>
+                    </AdminRoute>
+                ),
             },
             {
                 path: "/dashboard/my-class",
@@ -131,12 +153,20 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/my-class/update/:id",
-                element: <TeacherClassUpdate></TeacherClassUpdate>,
+                element: (
+                    <TeacherRoute>
+                        <TeacherClassUpdate></TeacherClassUpdate>
+                    </TeacherRoute>
+                ),
                 loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
             {
                 path: "/dashboard/my-class/:id",
-                element: <TeacherClassDetails></TeacherClassDetails>,
+                element: (
+                    <TeacherRoute>
+                        <TeacherClassDetails></TeacherClassDetails>
+                    </TeacherRoute>
+                ),
                 loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
             {

@@ -35,7 +35,7 @@ const MyProfile = () => {
             <div className="w-full md:w-1/2 border border-[#00203f] p-4 rounded-2xl shadow-2xl">
                 <div className="flex flex-col items-center justify-center">
                     <div className="mb-4 flex flex-col items-center justify-center">
-                        <img className="rounded-full mb-4" src={prolieuser.imagelink} />
+                        <img className="rounded-full w-48 h-48 mb-4" src={prolieuser.imagelink} />
                         <div className="uppercase font-bold">
                             Role: <span className="text-green-600">{prolieuser.role}</span>
                         </div>

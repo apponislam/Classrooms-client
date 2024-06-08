@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const TeacherCard = ({ teacher, approveBtn, rejectedBtn }) => {
-    console.log(teacher);
+    // console.log(teacher);
     const { _id, name, status, imagelink, experience, title, category } = teacher;
 
     return (
