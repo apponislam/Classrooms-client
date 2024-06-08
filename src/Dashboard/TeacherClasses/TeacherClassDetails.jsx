@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
@@ -32,7 +32,7 @@ const TeacherClassDetails = () => {
         },
     });
 
-    console.log(assignments);
+    // console.log(assignments);
 
     const {
         register,
@@ -72,6 +72,20 @@ const TeacherClassDetails = () => {
             });
         document.getElementById("my_modal_7").close();
     };
+
+    const [todayAssignments, setTodayAssignments] = useState([]);
+
+    useEffect(() => {
+        const today = new Date();
+        const maindate = format(today, "yyyy/MM/dd");
+        console.log(maindate);
+        const filteredAssignments = assignments.filter((assignment) => assignment.date === maindate);
+        const otherAssignments = assignments.filter((assignment) => assignment.date !== maindate);
+        console.log(filteredAssignments);
+        console.log(otherAssignments);
+
+        setTodayAssignments([...filteredAssignments, ...otherAssignments]);
+    }, [assignments]);
 
     if (isLoading) {
         return (
@@ -163,7 +177,7 @@ const TeacherClassDetails = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {assignments.map((assignment, index) => (
+                            {todayAssignments.map((assignment, index) => (
                                 <tr key={assignment._id}>
                                     <th>{index + 1}</th>
                                     <td>{assignment.assignmentTitle}</td>

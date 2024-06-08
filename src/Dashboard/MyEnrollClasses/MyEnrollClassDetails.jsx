@@ -70,6 +70,15 @@ const MyEnrollClassDetails = () => {
         document.getElementById("my_modal_7").close();
     };
 
+    const submitAssignmentBtn = (e) => {
+        axiosPublic.patch(`/Classes/assignmentsubmits/${Class._id}`).then((response) => {
+            console.log(response.data);
+            if (response.data.modifiedCount) {
+                toast.success(`${e.title} Assignment Submitted`);
+            }
+        });
+    };
+
     if (isLoading) {
         return (
             <div className="h-screen flex items-center justify-center">
@@ -140,7 +149,9 @@ const MyEnrollClassDetails = () => {
                                         <td>{assignment.description}</td>
                                         <td>{assignment.date}</td>
                                         <td>
-                                            <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">Submit</button>
+                                            <button onClick={() => submitAssignmentBtn(assignment)} className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">
+                                                Submit
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}

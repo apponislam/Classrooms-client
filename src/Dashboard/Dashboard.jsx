@@ -6,8 +6,38 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { SiGoogleclassroom } from "react-icons/si";
 import { NavLink, Outlet } from "react-router-dom";
 import "./Dashboard.css";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import { MoonLoader } from "react-spinners";
 
 const Dashboard = () => {
+    const { user } = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic();
+
+    const email = user.email;
+    // console.log(email);
+    const { data: mainuser = [], isLoading } = useQuery({
+        queryKey: ["mainuser"],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/Users/email/${email}`);
+            return res.data;
+        },
+    });
+
+    const [prolieuser] = mainuser;
+
+    if (isLoading) {
+        return (
+            <div className="h-screen flex items-center justify-center">
+                <MoonLoader color="#adefd1" size={40} />
+            </div>
+        );
+    }
+
+    console.log(prolieuser?.role);
+
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -25,42 +55,56 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-[#00203f] text-white text-xl gap-2">
                         {/* Sidebar content here */}
-                        <li>
-                            <NavLink to="/dashboard/requests">
-                                <FaChalkboardTeacher />
-                                Teacher Request
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/dashboard/users">
-                                <FaUsers />
-                                Users
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/dashboard/all-classes">
-                                <SiGoogleclassroom />
-                                All classes
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/dashboard/add-class">
-                                <IoIosAddCircleOutline />
-                                Add Class
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/dashboard/my-class">
-                                <MdClass />
-                                My Class
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/dashboard/myenroll-class">
-                                <MdOutlineClass />
-                                My enroll class
-                            </NavLink>
-                        </li>
+                        {prolieuser?.role === "admin" && (
+                            <li>
+                                <NavLink to="/dashboard/requests">
+                                    <FaChalkboardTeacher />
+                                    Teacher Request
+                                </NavLink>
+                            </li>
+                        )}
+                        {prolieuser?.role === "admin" && (
+                            <li>
+                                <NavLink to="/dashboard/users">
+                                    <FaUsers />
+                                    Users
+                                </NavLink>
+                            </li>
+                        )}
+                        {prolieuser?.role === "admin" && (
+                            <li>
+                                <NavLink to="/dashboard/all-classes">
+                                    <SiGoogleclassroom />
+                                    All classes
+                                </NavLink>
+                            </li>
+                        )}
+
+                        {prolieuser?.role === "teacher" && (
+                            <li>
+                                <NavLink to="/dashboard/add-class">
+                                    <IoIosAddCircleOutline />
+                                    Add Class
+                                </NavLink>
+                            </li>
+                        )}
+                        {prolieuser?.role === "teacher" && (
+                            <li>
+                                <NavLink to="/dashboard/my-class">
+                                    <MdClass />
+                                    My Class
+                                </NavLink>
+                            </li>
+                        )}
+                        {prolieuser?.role === "student" && (
+                            <li>
+                                <NavLink to="/dashboard/myenroll-class">
+                                    <MdOutlineClass />
+                                    My enroll class
+                                </NavLink>
+                            </li>
+                        )}
+
                         <li>
                             <NavLink to="/dashboard/my-profile">
                                 <CgProfile />

@@ -1,10 +1,12 @@
 import { MoonLoader } from "react-spinners";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Users = () => {
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const {
         data: users = [],
@@ -13,7 +15,7 @@ const Users = () => {
     } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await axiosPublic.get("/Users");
+            const res = await axiosSecure.get("/Users");
             return res.data;
         },
     });

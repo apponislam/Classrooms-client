@@ -29,6 +29,7 @@ import ApprovedClassDetails from "./Components/ApprovedClasses/ApprovedClassDeta
 import MyEnrollClasses from "./Dashboard/MyEnrollClasses/MyEnrollClasses.jsx";
 import Payment from "./Components/ApprovedClasses/Payment.jsx";
 import MyEnrollClassDetails from "./Dashboard/MyEnrollClasses/MyEnrollClassDetails.jsx";
+import DashboardHome from "./Dashboard/DashboardHome.jsx";
 
 const router = createBrowserRouter([
     {
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
             </BeforeSignIn>
         ),
         children: [
+            {
+                path: "/dashboard",
+                element: <DashboardHome></DashboardHome>,
+            },
             {
                 path: "/dashboard/my-profile",
                 element: <MyProfile></MyProfile>,
