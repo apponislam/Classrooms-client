@@ -2,10 +2,10 @@ import { MoonLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+// import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Users = () => {
-    const axiosPublic = useAxiosPublic();
+    // const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
 
     const {
@@ -32,7 +32,7 @@ const Users = () => {
             confirmButtonText: "Yes",
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic
+                axiosSecure
                     .patch(`/Users/${id}`, {
                         role: "admin",
                     })

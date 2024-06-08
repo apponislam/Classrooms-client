@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { MoonLoader } from "react-spinners";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Total = () => {
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { data: approvedClasses = [], isLoading } = useQuery({
         queryKey: ["approvedClasses"],
@@ -16,7 +18,7 @@ const Total = () => {
     const { data: users = [] } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await axiosPublic.get("/Users");
+            const res = await axiosSecure.get("/Users");
             return res.data;
         },
     });

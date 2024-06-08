@@ -21,7 +21,7 @@ const TechOn = () => {
     });
 
     const [prolieuser] = mainuser;
-    console.log(prolieuser);
+    // console.log(prolieuser);
 
     const {
         register,
@@ -29,7 +29,7 @@ const TechOn = () => {
         handleSubmit,
     } = useForm();
     const beATeacher = (data) => {
-        console.log(data);
+        // console.log(data);
 
         updateProfile(user, {
             displayName: data.name,
