@@ -69,7 +69,7 @@ const router = createBrowserRouter([
             {
                 path: "/AllClass",
                 element: <ApprovedClasses></ApprovedClasses>,
-                loader: () => fetch("http://localhost:5000/ApprovedClassCount"),
+                loader: () => fetch("https://classroom-server-mocha.vercel.app/ApprovedClassCount"),
             },
             {
                 path: "/class/:id",
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
                         <ApprovedClassDetails></ApprovedClassDetails>
                     </BeforeSignIn>
                 ),
-                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+                loader: ({ params }) => fetch(`https://classroom-server-mocha.vercel.app/Classes/${params.id}`),
             },
             {
                 path: "/payment/:id",
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
                         <Payment></Payment>
                     </BeforeSignIn>
                 ),
-                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+                loader: ({ params }) => fetch(`https://classroom-server-mocha.vercel.app/Classes/${params.id}`),
             },
         ],
     },
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
                         <Users></Users>
                     </AdminRoute>
                 ),
-                loader: () => fetch("http://localhost:5000/UsersCount"),
+                loader: () => fetch("https://classroom-server-mocha.vercel.app/UsersCount"),
             },
             {
                 path: "/dashboard/add-class",
@@ -139,7 +139,7 @@ const router = createBrowserRouter([
                         <SeeProgress></SeeProgress>
                     </AdminRoute>
                 ),
-                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+                loader: ({ params }) => fetch(`https://classroom-server-mocha.vercel.app/Classes/${params.id}`),
             },
             {
                 path: "/dashboard/requests",
@@ -160,7 +160,7 @@ const router = createBrowserRouter([
                         <TeacherClassUpdate></TeacherClassUpdate>
                     </TeacherRoute>
                 ),
-                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+                loader: ({ params }) => fetch(`https://classroom-server-mocha.vercel.app/Classes/${params.id}`),
             },
             {
                 path: "/dashboard/my-class/:id",
@@ -169,7 +169,7 @@ const router = createBrowserRouter([
                         <TeacherClassDetails></TeacherClassDetails>
                     </TeacherRoute>
                 ),
-                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+                loader: ({ params }) => fetch(`https://classroom-server-mocha.vercel.app/Classes/${params.id}`),
             },
             {
                 path: "/dashboard/myenroll-class",
@@ -178,7 +178,7 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/myenroll-class/:id",
                 element: <MyEnrollClassDetails></MyEnrollClassDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+                loader: ({ params }) => fetch(`https://classroom-server-mocha.vercel.app/Classes/${params.id}`),
             },
         ],
     },
