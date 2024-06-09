@@ -117,7 +117,7 @@ const AllClasses = () => {
                     <ClassItemA key={Class._id} Class={Class} approveBtn={approveBtn} rejectedBtn={rejectedBtn}></ClassItemA>
                 ))}
             </div>
-            <div className="flex items-center justify-center gap-1 pagination mt-4">
+            <div className="flex items-center justify-center gap-1 pagination my-4">
                 {/* <p>Cuttent Page {currentPage}</p> */}
                 <button onClick={prevPage} className="btn text-[#00203f] bg-[#adefd1] h-auto hover:bg-[#adefd1] hover:text-[#00203f]">
                     Prev
