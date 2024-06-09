@@ -1,8 +1,12 @@
 # B9A12 assignment12_category_0008
 
+Temporary Information
+
 # admin@apclassroom.com
 
 # Abc123Admin
+
+Default User Password Is Abc123
 
 [Live Link: AP Classroom](https://assignmentb9a12.web.app/) Click here
 
