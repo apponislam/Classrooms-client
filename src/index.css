@@ -32,3 +32,8 @@ body {
     top: 85px;
     z-index: 94;
 }
+
+.pagination .selected {
+    background: #00203f;
+    color: white;
+}

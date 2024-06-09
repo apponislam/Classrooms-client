@@ -69,6 +69,7 @@ const router = createBrowserRouter([
             {
                 path: "/AllClass",
                 element: <ApprovedClasses></ApprovedClasses>,
+                loader: () => fetch("http://localhost:5000/ApprovedClassCount"),
             },
             {
                 path: "/class/:id",
@@ -113,6 +114,7 @@ const router = createBrowserRouter([
                         <Users></Users>
                     </AdminRoute>
                 ),
+                loader: () => fetch("http://localhost:5000/UsersCount"),
             },
             {
                 path: "/dashboard/add-class",

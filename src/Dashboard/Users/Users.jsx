@@ -2,20 +2,43 @@ import { MoonLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
 // import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Users = () => {
     // const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
 
+    const { count } = useLoaderData();
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemperPage = 10;
+    const numberOfPages = Math.ceil(count / itemperPage);
+    const pages = [...Array(numberOfPages).keys()];
+    console.log(pages);
+
+    const prevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const nextPage = () => {
+        if (currentPage < pages.length - 1) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    // console.log(currentPage, itemperPage);
+
     const {
         data: users = [],
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: ["users"],
+        queryKey: ["users", currentPage, itemperPage],
         queryFn: async () => {
-            const res = await axiosSecure.get("/Users");
+            const res = await axiosSecure.get(`/Users?page=${currentPage}&size=${itemperPage}`);
             return res.data;
         },
     });
@@ -62,7 +85,7 @@ const Users = () => {
 
     return (
         <div>
-            <h1 className="text-center text-3xl font-bold">Total Users: {users.length}</h1>
+            <h1 className="text-center text-3xl font-bold">Total Users: {count}</h1>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
@@ -98,6 +121,20 @@ const Users = () => {
                             ))}
                         </tbody>
                     </table>
+                </div>
+                <div className="flex items-center justify-center gap-1 pagination mt-4">
+                    {/* <p>Cuttent Page {currentPage}</p> */}
+                    <button onClick={prevPage} className="btn text-[#00203f] bg-[#adefd1] h-auto hover:bg-[#adefd1] hover:text-[#00203f]">
+                        Prev
+                    </button>
+                    {pages.map((page, index) => (
+                        <button onClick={() => setCurrentPage(page)} key={index} className={`w-10 h-10 text-[#00203f] bg-[#adefd1] ${currentPage === page && "selected"} hover:bg-[#00203f] hover:text-white btn`}>
+                            {index + 1}
+                        </button>
+                    ))}
+                    <button onClick={nextPage} className="btn text-[#00203f] bg-[#adefd1] h-auto hover:bg-[#adefd1] hover:text-[#00203f]">
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
