@@ -2,9 +2,8 @@
 
 Temporary Information
 
-# admin@apclassroom.com
-
-# Abc123Admin
+Admin Email: admin@apclassroom.com
+Admin Password: Abc123Admin
 
 Default User Password Is: Abc123
 
