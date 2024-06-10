@@ -6,7 +6,7 @@ Temporary Information
 
 # Abc123Admin
 
-Default User Password Is Abc123
+Default User Password Is: Abc123
 
 [Live Link: AP Classroom](https://assignmentb9a12.web.app/) Click here
 

@@ -32,11 +32,13 @@ import MyEnrollClassDetails from "./Dashboard/MyEnrollClasses/MyEnrollClassDetai
 import DashboardHome from "./Dashboard/DashboardHome.jsx";
 import AdminRoute from "./Protected/AdminRoute.jsx";
 import TeacherRoute from "./Protected/TeacherRoute.jsx";
+import NotFound from "./Components/NotFound/NotFound.jsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App></App>,
+        errorElement: <NotFound></NotFound>,
         children: [
             {
                 path: "/",

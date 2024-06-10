@@ -1,5 +1,7 @@
 import BeTeacher from "./BeTeacher";
+import CategoryItems from "./CategoryItems";
 import Companies from "./Companies";
+import Faqs from "./Faqs";
 import HomeClasses from "./HomeClasses/HomeClasses";
 import ReviewSlider from "./ReviewSlider";
 import Slider from "./Slider";
@@ -14,6 +16,8 @@ const Home = () => {
             <ReviewSlider></ReviewSlider>
             <BeTeacher></BeTeacher>
             <Total></Total>
+            <Faqs></Faqs>
+            <CategoryItems></CategoryItems>
         </div>
     );
 };

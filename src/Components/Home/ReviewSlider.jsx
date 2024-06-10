@@ -41,8 +41,8 @@ const ReviewSlider = () => {
                             <div className="flex items-center justify-center flex-col">
                                 <p className="mb-2 text-xl text-center">Class Title: {feedback.title}</p>
                                 <img className="w-24 h-24 rounded-full mb-2" src={feedback.photo} alt="" />
-                                <p className="text-center">{feedback.name}</p>
-                                <p className="text-center">Feedback: {feedback.description}</p>
+                                <p className="text-center font-bold text-xl mb-2">{feedback.name}</p>
+                                <p className="text-center w-3/4">Feedback: {feedback.description}</p>
                                 <ReactStars count={5} value={feedback.rating} edit={false} size={24} activeColor="#ffd700" />
                             </div>
                         </SwiperSlide>
