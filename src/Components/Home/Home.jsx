@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import BeTeacher from "./BeTeacher";
 import CategoryItems from "./CategoryItems";
 import Companies from "./Companies";
@@ -10,6 +11,9 @@ import Total from "./Total";
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Appon Classroom || Home</title>
+            </Helmet>
             <Slider></Slider>
             <Companies></Companies>
             <HomeClasses></HomeClasses>

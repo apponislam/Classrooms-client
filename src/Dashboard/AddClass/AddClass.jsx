@@ -4,6 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
@@ -42,6 +43,9 @@ const AddClass = () => {
 
     return (
         <div className="flex justify-center items-center h-screen">
+            <Helmet>
+                <title>Add Your Class || Dashboard || Appon Classroom</title>
+            </Helmet>
             <div className="w-full md:w-1/2 border border-[#00203f] p-4 rounded-2xl shadow-2xl">
                 <form onSubmit={handleSubmit(addClass)}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

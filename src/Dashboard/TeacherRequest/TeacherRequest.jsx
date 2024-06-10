@@ -3,6 +3,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { MoonLoader } from "react-spinners";
 import TeacherCard from "./TeacherCard";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const TeacherRequest = () => {
     const axiosPublic = useAxiosPublic();
@@ -94,6 +95,9 @@ const TeacherRequest = () => {
     return (
         <div>
             <h1 className="text-center font-bold text-2xl">Review Teacher Request</h1>
+            <Helmet>
+                <title>Review Teacher Request || Dashboard || Appon Classroom</title>
+            </Helmet>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">
                 {teacherPending.map((teacher) => (
                     <TeacherCard key={teacher._id} teacher={teacher} approveBtn={approveBtn} rejectedBtn={rejectedBtn}></TeacherCard>

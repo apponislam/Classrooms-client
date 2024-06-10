@@ -11,6 +11,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { MoonLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
@@ -40,6 +41,9 @@ const Dashboard = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard || Appon Classroom</title>
+            </Helmet>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col justify-start">

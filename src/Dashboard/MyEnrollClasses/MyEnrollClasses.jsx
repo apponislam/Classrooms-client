@@ -4,6 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const MyEnrollClasses = () => {
     const axiosPublic = useAxiosPublic();
@@ -30,6 +31,9 @@ const MyEnrollClasses = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>My Classes || Dashboard || Appon Classroom</title>
+            </Helmet>
             <h1 className="text-center font-bold text-2xl mb-8">Your Classes</h1>
 
             <div className="overflow-x-auto">

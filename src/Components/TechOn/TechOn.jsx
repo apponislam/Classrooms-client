@@ -6,6 +6,7 @@ import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import { MoonLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 // import { toast } from "react-toastify";
 
 const TechOn = () => {
@@ -68,6 +69,9 @@ const TechOn = () => {
 
     return (
         <div className="container mx-auto">
+            <Helmet>
+                <title>Be A Teacher || Appon Classroom</title>
+            </Helmet>
             <div className="flex justify-center items-center h-screen mx-3 xl:mx-0">
                 {prolieuser?.role === "teacher" || prolieuser?.role === "admin" ? (
                     <p className="font-bold text-xl text-center">You are Already a Teacher Or Admin</p>

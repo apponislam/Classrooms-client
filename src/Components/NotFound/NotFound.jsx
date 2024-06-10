@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 const NotFound = () => {
     return (
         <div className="h-screen flex flex-col justify-center items-center">
+            <Helmet>
+                <title>Not Found || Appon Classroom</title>
+            </Helmet>
             <h1 className="text-5xl mb-10 font-bold">Opps Sorry</h1>
             <p className="text-center text-2xl"> 404 - Not Found</p>
             <Link to="/">

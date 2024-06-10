@@ -4,6 +4,7 @@ import { MoonLoader } from "react-spinners";
 import ApprovedClassCard from "./ApprovedClassCard";
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ApprovedClasses = () => {
     const axiosPublic = useAxiosPublic();
@@ -47,6 +48,9 @@ const ApprovedClasses = () => {
 
     return (
         <div className="container mx-auto">
+            <Helmet>
+                <title>All Classes || Appon Classroom</title>
+            </Helmet>
             <div className="mx-4 xl:mx-0 my-10 md:my-20">
                 <h1 className="text-center text-2xl font-bold mb-8">Classes - {count}</h1>
 

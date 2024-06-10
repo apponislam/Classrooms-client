@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { signOut, updateProfile } from "firebase/auth";
 import auth from "../../Firebase/firebase.config";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const { createUser, setLoading } = useContext(AuthContext);
@@ -69,6 +70,9 @@ const Register = () => {
 
     return (
         <div className="container mx-auto">
+            <Helmet>
+                <title>Register || Appon Classroom</title>
+            </Helmet>
             <div className="h-screen flex items-center justify-center">
                 <div className="w-96 border border-[#00203f] p-4 rounded-2xl shadow-2xl">
                     <form onSubmit={handleSubmit(registerBtn)}>

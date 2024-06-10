@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 // import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Users = () => {
@@ -85,6 +86,9 @@ const Users = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Users || Dashboard || Appon Classroom</title>
+            </Helmet>
             <h1 className="text-center text-3xl font-bold">Total Users: {count}</h1>
             <div>
                 <div className="overflow-x-auto">

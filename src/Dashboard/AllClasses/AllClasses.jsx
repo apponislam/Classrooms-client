@@ -5,6 +5,7 @@ import ClassItemA from "./ClassItemA";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const AllClasses = () => {
     const axiosPublic = useAxiosPublic();
@@ -111,6 +112,9 @@ const AllClasses = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>All Classes || Dashboard || Appon Classroom</title>
+            </Helmet>
             <h1 className="text-center text-2xl font-bold mb-8">Classes For Review: {count}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">
                 {allClasses.map((Class) => (

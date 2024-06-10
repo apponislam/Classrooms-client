@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { signInUser, googleSignIn, setLoading, githubSignIn } = useContext(AuthContext);
@@ -84,6 +85,9 @@ const Login = () => {
 
     return (
         <div className="container mx-auto">
+            <Helmet>
+                <title>Login || Appon Classroom</title>
+            </Helmet>
             <div className="h-screen flex items-center justify-center">
                 <div className="w-96 border border-[#00203f] p-4 rounded-2xl shadow-2xl">
                     <form onSubmit={handleSubmit(signInBtn)}>

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { MoonLoader } from "react-spinners";
 import TeacherClassCard from "./TeacherClassCard";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const TeacherClasses = () => {
     const { user } = useContext(AuthContext);
@@ -65,6 +66,9 @@ const TeacherClasses = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Teacher Classes || Dashboard || Appon Classroom</title>
+            </Helmet>
             <h1 className="text-center font-bold text-2xl mb-8">Your Created Classes</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">
                 {teacheClasses.map((Class) => (
