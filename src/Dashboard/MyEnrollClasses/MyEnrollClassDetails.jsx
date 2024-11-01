@@ -19,14 +19,14 @@ const MyEnrollClassDetails = () => {
     // console.log(Class);
 
     const { data: assignments = [], isLoading } = useQuery({
-        queryKey: ["users"],
+        queryKey: ["usersclass"],
         queryFn: async () => {
             const res = await axiosPublic.get(`/Assignments/ClassId/${Class._id}`);
             return res.data;
         },
     });
 
-    // console.log(assignments);
+    console.log(assignments);
 
     const handleRatingChange = (newRating) => {
         setRating(newRating);
@@ -74,7 +74,7 @@ const MyEnrollClassDetails = () => {
         axiosPublic.patch(`/Classes/assignmentsubmits/${Class._id}`).then((response) => {
             console.log(response.data);
             if (response.data.modifiedCount) {
-                toast.success(`${e.title} Assignment Submitted`);
+                toast.success(`${e.assignmentTitle} Assignment Submitted`);
             }
         });
     };
@@ -91,7 +91,7 @@ const MyEnrollClassDetails = () => {
         <div>
             <div>
                 <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full" onClick={() => document.getElementById("my_modal_7").showModal()}>
-                    <FaPlus /> Create
+                    <FaPlus /> FeedBack Us
                 </button>
                 <dialog id="my_modal_7" className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box border-2 border-[#00203f] rounded-2xl shadow-2xl p-3 xl:p-4">
@@ -149,9 +149,39 @@ const MyEnrollClassDetails = () => {
                                         <td>{assignment.description}</td>
                                         <td>{assignment.date}</td>
                                         <td>
-                                            <button onClick={() => submitAssignmentBtn(assignment)} className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">
+                                            <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full" onClick={() => document.getElementById("my_modal_8").showModal()}>
                                                 Submit
                                             </button>
+                                            <dialog id="my_modal_8" className="modal modal-bottom sm:modal-middle">
+                                                <div className="modal-box border-2 border-[#00203f] rounded-2xl shadow-2xl p-3 xl:p-4">
+                                                    <h3 className="font-bold text-2xl text-center my-4">Submit Assignment</h3>
+                                                    <form method="dialog" className="absolute top-6 right-4">
+                                                        <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full ">
+                                                            <IoMdClose />
+                                                        </button>
+                                                    </form>
+
+                                                    <form method="dialog" onSubmit={handleSubmit(addFeedback)}>
+                                                        <div className="">
+                                                            <textarea placeholder="Description" type="text" className="h-32 input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("description", { required: "Description is required" })} aria-invalid={errors.password ? "true" : "false"} />
+                                                            {errors.description && (
+                                                                <p className="text-red-600" role="alert">
+                                                                    {errors.description.message}
+                                                                </p>
+                                                            )}
+                                                        </div>
+
+                                                        {/* <div className="flex flex-col items-center justify-center">
+                                                            <ReactStars count={5} value={rating} onChange={handleRatingChange} size={24} activeColor="#ffd700" />
+                                                            <p>Your rating: {rating}</p>
+                                                        </div> */}
+                                                        {/* <input className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full" type="submit" value="Add assignment" /> */}
+                                                        <button onClick={() => submitAssignmentBtn(assignment)} className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full">
+                                                            Submit
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </dialog>
                                         </td>
                                     </tr>
                                 ))}

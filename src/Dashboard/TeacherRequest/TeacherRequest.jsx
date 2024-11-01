@@ -13,12 +13,22 @@ const TeacherRequest = () => {
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: ["users"],
+        queryKey: ["newusers"],
         queryFn: async () => {
             const res = await axiosPublic.get("/PendingUsers");
             return res.data;
         },
     });
+
+    console.log(teacherPending);
+
+    if (isLoading) {
+        return (
+            <div className="h-screen flex items-center justify-center">
+                <MoonLoader color="#adefd1" size={40} />
+            </div>
+        );
+    }
 
     const approveBtn = (id) => {
         Swal.fire({
@@ -83,14 +93,6 @@ const TeacherRequest = () => {
             }
         });
     };
-
-    if (isLoading) {
-        return (
-            <div className="h-screen flex items-center justify-center">
-                <MoonLoader color="#adefd1" size={40} />
-            </div>
-        );
-    }
 
     return (
         <div>

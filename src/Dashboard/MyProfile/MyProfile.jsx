@@ -36,7 +36,7 @@ const MyProfile = () => {
             <Helmet>
                 <title>My Profile || Dashboard || Appon Classroom</title>
             </Helmet>
-            <div className="w-full md:w-1/2 border border-[#00203f] p-4 rounded-2xl shadow-2xl">
+            <div className="w-full md:w-1/2 border border-[#00203f] p-4 rounded-2xl shadow-2xl" data-aos="zoom-in-down">
                 <div className="flex flex-col items-center justify-center">
                     <div className="mb-4 flex flex-col items-center justify-center">
                         <img className="rounded-full w-48 h-48 mb-4" src={prolieuser.imagelink} />

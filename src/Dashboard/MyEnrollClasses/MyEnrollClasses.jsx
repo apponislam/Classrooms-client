@@ -54,7 +54,7 @@ const MyEnrollClasses = () => {
                                 <th>{index + 1}</th>
                                 <td>
                                     <div className="w-10 h-10 rounded-full">
-                                        <img className="rounded-full" src={Class.image} alt="" />
+                                        <img className="rounded-full w-10 h-10" src={Class.image} alt="" />
                                     </div>
                                 </td>
                                 <td>{Class.title}</td>

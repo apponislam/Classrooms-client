@@ -62,7 +62,9 @@ const HomeClasses = () => {
                 >
                     {homeClassesShort.map((Class) => (
                         <SwiperSlide key={Class._id}>
-                            <ApprovedClassCard Class={Class}></ApprovedClassCard>
+                            <div className="pb-10">
+                                <ApprovedClassCard Class={Class}></ApprovedClassCard>
+                            </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>

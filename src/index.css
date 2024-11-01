@@ -23,6 +23,24 @@ body {
     color: white;
 }
 
+.mainnav {
+    transition: 0.3s;
+}
+
+a.mainnav.active {
+    --tw-bg-opacity: 1;
+    background-color: #00203f !important;
+    --tw-text-opacity: 1;
+    color: white !important;
+}
+
+a.mainnav:hover {
+    --tw-bg-opacity: 1;
+    background-color: #00203f !important;
+    --tw-text-opacity: 1;
+    color: white !important;
+}
+
 .react-datepicker-wrapper {
     width: 100%;
 }
@@ -36,4 +54,26 @@ body {
 .pagination .selected {
     background: #00203f;
     color: white;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slideup {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.slideup.show {
+    opacity: 1;
+    transform: translateY(0);
 }

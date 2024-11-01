@@ -33,6 +33,7 @@ import DashboardHome from "./Dashboard/DashboardHome.jsx";
 import AdminRoute from "./Protected/AdminRoute.jsx";
 import TeacherRoute from "./Protected/TeacherRoute.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
+import "animate.css";
 
 const router = createBrowserRouter([
     {

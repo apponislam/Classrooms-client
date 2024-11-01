@@ -25,7 +25,7 @@ const TeacherClassDetails = () => {
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: ["users"],
+        queryKey: ["userdatas"],
         queryFn: async () => {
             const res = await axiosPublic.get(`/Assignments/ClassId/${Class._id}`);
             return res.data;
@@ -40,9 +40,9 @@ const TeacherClassDetails = () => {
         handleSubmit,
     } = useForm();
     const addAssignment = (data) => {
-        console.log(data);
+        // console.log(data);
         const date = format(startDate, "yyyy/MM/dd");
-        console.log(date);
+        // console.log(date);
         // const maindate = dates.split("/");
         // const year = parseInt(maindate[0]);
         // const month = parseInt(maindate[1]);
@@ -57,13 +57,13 @@ const TeacherClassDetails = () => {
                 date: date,
             })
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success("Assignments added successfully");
                     axiosPublic.patch(`/Classes/assignments/${Class._id}`).then((response) => {
-                        console.log(response.data);
+                        // console.log(response.data);
                         if (response.data.modifiedCount) {
-                            console.log("Assignment added");
+                            // console.log("Assignment added");
                             navigate(`/dashboard/my-class/${Class._id}`);
                             refetch();
                         }
@@ -78,14 +78,16 @@ const TeacherClassDetails = () => {
     useEffect(() => {
         const today = new Date();
         const maindate = format(today, "yyyy/MM/dd");
-        console.log(maindate);
+        // console.log(maindate);
         const filteredAssignments = assignments.filter((assignment) => assignment.date === maindate);
         const otherAssignments = assignments.filter((assignment) => assignment.date !== maindate);
-        console.log(filteredAssignments);
-        console.log(otherAssignments);
+        // console.log(filteredAssignments);
+        // console.log(otherAssignments);
 
         setTodayAssignments([...filteredAssignments, ...otherAssignments]);
     }, [assignments]);
+
+    console.log(todayAssignments);
 
     if (isLoading) {
         return (
@@ -114,7 +116,7 @@ const TeacherClassDetails = () => {
 
             <div>
                 <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full" onClick={() => document.getElementById("my_modal_7").showModal()}>
-                    <FaPlus /> Create
+                    <FaPlus /> Create Assignment
                 </button>
                 <dialog id="my_modal_7" className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box border-2 border-[#00203f] rounded-2xl shadow-2xl p-3 xl:p-4">
@@ -183,9 +185,9 @@ const TeacherClassDetails = () => {
                                     <td>{assignment.assignmentTitle}</td>
                                     <td>{assignment.description}</td>
                                     <td>{assignment.date}</td>
-                                    {/* <td>
-                                        <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">Continue</button>
-                                    </td> */}
+                                    <td>
+                                        <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">Check</button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

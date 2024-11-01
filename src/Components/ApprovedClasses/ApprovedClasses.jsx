@@ -11,7 +11,7 @@ const ApprovedClasses = () => {
 
     const { count } = useLoaderData();
     const [currentPage, setCurrentPage] = useState(0);
-    const itemperPage = 10;
+    const itemperPage = 9;
     const numberOfPages = Math.ceil(count / itemperPage);
     const pages = [...Array(numberOfPages).keys()];
     console.log(pages);

@@ -5,7 +5,7 @@ const TeacherCard = ({ teacher, approveBtn, rejectedBtn }) => {
     const { _id, name, status, imagelink, experience, title, category } = teacher;
 
     return (
-        <div className="border border-[#00203f] p-4 rounded-xl flex flex-col">
+        <div className="border border-[#00203f] p-4 rounded-xl flex flex-col" data-aos="zoom-in">
             <div className="relative flex items-center justify-center">
                 <img className="w-40 h-40 border border-[#00203f] object-cover rounded-full mb-4" src={imagelink} alt="" />
                 <p className="bg-[#00203f] text-white absolute top-2 right-2 px-3 py-2 rounded-xl">{status}</p>
@@ -28,7 +28,7 @@ const TeacherCard = ({ teacher, approveBtn, rejectedBtn }) => {
                 <p>{/* Description: <span className="font-bold">{description}</span> */}</p>
             </div>
             <div className="grow flex flex-col justify-end">
-                <div className="grid items-center grid-cols-2 gap-4 mb-4">
+                <div className="grid items-center grid-cols-2 gap-4">
                     <button disabled={status === "accepted" || status === "rejected"} onClick={() => approveBtn(_id)} className="btn bg-green-600 hover:bg-green-700 text-white">
                         Approve
                     </button>

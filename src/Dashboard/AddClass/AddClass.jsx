@@ -46,7 +46,7 @@ const AddClass = () => {
             <Helmet>
                 <title>Add Your Class || Dashboard || Appon Classroom</title>
             </Helmet>
-            <div className="w-full md:w-1/2 border border-[#00203f] p-4 rounded-2xl shadow-2xl">
+            <div className="w-full md:w-1/2 border border-[#00203f] p-4 rounded-2xl shadow-2xl" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="300">
                 <form onSubmit={handleSubmit(addClass)}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>

@@ -13,11 +13,11 @@ const ApprovedClassDetails = () => {
             <div className="mx-4 xl:mx-0 my-10 xl:my-20">
                 <h1 className="text-2xl mb-6 font-bold text-center">Class Full Details</h1>
                 <div className="border border-[#00203f] p-4 rounded-xl grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div>
+                    <div data-aos="zoom-in-right">
                         <img className="w-full border border-[#00203f] h-80 object-cover rounded-2xl mb-4 xl:mb-0" src={image} alt="" />
                     </div>
 
-                    <div className="flex flex-col gap-2 mb-2">
+                    <div className="flex flex-col gap-2 mb-2" data-aos="zoom-in-left">
                         <p>
                             Title: <span className="font-bold">{title}</span>
                         </p>
@@ -31,7 +31,7 @@ const ApprovedClassDetails = () => {
                             Status: <span className="font-bold">{status}</span>
                         </p>
                         <p>
-                            Price: <span className="font-bold">{price}</span>
+                            Price: <span className="font-bold">{price}$</span>
                         </p>
                         <p>
                             Enrolled: <span className="font-bold">{enroll}</span>

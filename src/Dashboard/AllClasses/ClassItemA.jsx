@@ -5,9 +5,9 @@ const ClassItemA = ({ Class, approveBtn, rejectedBtn }) => {
     const { _id, email, title, description, image, status } = Class;
 
     return (
-        <div className="border border-[#00203f] p-4 rounded-xl flex flex-col">
+        <div className="border border-[#00203f] p-4 rounded-xl flex flex-col" data-aos="zoom-in">
             <div className="relative">
-                <img className="w-full border border-[#00203f] h-80 object-cover rounded-2xl mb-4" src={image} alt="" />
+                <img className="w-full border border-[#00203f] h-56 md:h-64 object-cover rounded-2xl mb-4" src={image} alt="" />
                 <p className="bg-[#00203f] text-white absolute top-2 right-2 px-3 py-2 rounded-xl">{status}</p>
             </div>
 

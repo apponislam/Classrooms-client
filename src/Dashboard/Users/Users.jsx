@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 // import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
@@ -16,7 +16,7 @@ const Users = () => {
     const itemperPage = 10;
     const numberOfPages = Math.ceil(count / itemperPage);
     const pages = [...Array(numberOfPages).keys()];
-    console.log(pages);
+    // console.log(pages);
 
     const prevPage = () => {
         if (currentPage > 0) {
@@ -43,6 +43,16 @@ const Users = () => {
             return res.data;
         },
     });
+
+    const [showIndexes, setShowIndexes] = useState([]);
+
+    useEffect(() => {
+        users.forEach((_, index) => {
+            setTimeout(() => {
+                setShowIndexes((prevIndexes) => [...prevIndexes, index]);
+            }, index * 200);
+        });
+    }, [users]);
 
     const makeAdmin = (id) => {
         console.log(id);
@@ -91,7 +101,7 @@ const Users = () => {
             </Helmet>
             <h1 className="text-center text-3xl font-bold">Total Users: {count}</h1>
             <div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto overflow-y-hidden">
                     <table className="table w-full">
                         {/* head */}
                         <thead>
@@ -106,11 +116,11 @@ const Users = () => {
                         </thead>
                         <tbody>
                             {users.map((user, index) => (
-                                <tr key={user._id}>
-                                    <th>{index + 1}</th>
+                                <tr key={user._id} className={`slideup ${showIndexes.includes(index) ? "show" : ""}`} style={{ animationDelay: `${index * 0.2}s` }}>
+                                    <th>{currentPage * itemperPage + index + 1}</th>
                                     <td>
                                         <div className="w-10 h-10 rounded-full">
-                                            <img className="rounded-full" src={user.imagelink} alt="" />
+                                            <img className="object-cover w-10 h-10 rounded-full" src={user.imagelink} alt="" />
                                         </div>
                                     </td>
                                     <td>{user.name}</td>

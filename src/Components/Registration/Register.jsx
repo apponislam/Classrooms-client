@@ -74,7 +74,7 @@ const Register = () => {
                 <title>Register || Appon Classroom</title>
             </Helmet>
             <div className="h-screen flex items-center justify-center">
-                <div className="w-96 border border-[#00203f] p-4 rounded-2xl shadow-2xl">
+                <div className="w-96 border border-[#00203f] p-4 rounded-2xl shadow-2xl" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="400">
                     <form onSubmit={handleSubmit(registerBtn)}>
                         <div className="mb-4">
                             <input placeholder="Name" type="text" className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("name", { required: true })} aria-invalid={errors.name ? "true" : "false"} />

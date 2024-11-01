@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import "animate.css";
 
 const Navbar = () => {
     const { user, loading, logOut } = useContext(AuthContext);
 
     if (loading) {
         return (
-            <div className="container mx-auto">
+            <div className="container mx-auto animate animate__bounce">
                 <div className="flex justify-between items-center p-2">
                     <div className="skeleton h-12 w-28"></div>
                     <div className="items-center gap-2 hidden lg:flex">
@@ -26,13 +27,19 @@ const Navbar = () => {
     const navlinks = (
         <>
             <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink className="mainnav" to="/">
+                    Home
+                </NavLink>
             </li>
             <li>
-                <NavLink to="/AllClass">All Classes</NavLink>
+                <NavLink className="mainnav" to="/AllClass">
+                    All Classes
+                </NavLink>
             </li>
             <li>
-                <NavLink to="/technow">Tech on AP Classroom</NavLink>
+                <NavLink className="mainnav" to="/technow">
+                    Tech on AP Classroom
+                </NavLink>
             </li>
         </>
     );
@@ -48,7 +55,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto animate__bounce">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -73,8 +80,8 @@ const Navbar = () => {
                         <>
                             <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
                                 <a tabIndex={0} role="button" id="clickable">
-                                    <div className="w-12 h-12 rounded-full border border-blue-600">
-                                        <img className="rounded-full p-1" src={user?.photoURL} alt="" />
+                                    <div className="w-12 h-12 p-1 rounded-full border border-blue-600">
+                                        <img className="rounded-full w-full h-full object-cover" src={user?.photoURL} alt="" />
                                     </div>
                                 </a>
                                 <ul tabIndex={0} className="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52 border border-[#00203f]">

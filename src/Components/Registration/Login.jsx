@@ -89,7 +89,7 @@ const Login = () => {
                 <title>Login || Appon Classroom</title>
             </Helmet>
             <div className="h-screen flex items-center justify-center">
-                <div className="w-96 border border-[#00203f] p-4 rounded-2xl shadow-2xl">
+                <div className="w-96 border border-[#00203f] p-4 rounded-2xl shadow-2xl" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="400">
                     <form onSubmit={handleSubmit(signInBtn)}>
                         <div className="mb-4">
                             <input placeholder="Email" type="email" className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("email", { required: true })} aria-invalid={errors.email ? "true" : "false"} />

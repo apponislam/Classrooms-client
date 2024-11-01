@@ -5,9 +5,9 @@ const ApprovedClassCard = ({ Class }) => {
     const { _id, enroll, name, title, description, image, price } = Class;
 
     return (
-        <div className="border border-[#00203f] p-4 rounded-xl flex flex-col">
+        <div className="border border-[#00203f] p-4 rounded-xl flex flex-col" data-aos="zoom-in" data-aos-duration="300">
             <div className="relative">
-                <img className="w-full border border-[#00203f] h-80 object-cover rounded-2xl mb-4" src={image} alt="" />
+                <img className="w-full border border-[#00203f] h-56 md:h-64 object-cover rounded-2xl mb-4" src={image} alt="" />
                 <p className="bg-[#00203f] text-white absolute top-2 right-2 px-3 py-2 rounded-xl">Enrolled: {enroll}</p>
             </div>
 
@@ -19,7 +19,7 @@ const ApprovedClassCard = ({ Class }) => {
                     Name: <span className="font-bold">{name}</span>
                 </p>
                 <p>
-                    Price: <span className="font-bold">{price}</span>
+                    Price: <span className="font-bold">{price}$</span>
                 </p>
                 <p>
                     Description: <span className="font-bold">{description}</span>

@@ -5,11 +5,11 @@ const TeacherClassCard = ({ Class, deleteMyClass }) => {
     const { _id, name, email, title, description, image, status, price } = Class;
 
     return (
-        <div className="border border-[#00203f] p-4 rounded-xl flex flex-col">
+        <div className="border border-[#00203f] p-4 rounded-xl flex flex-col" data-aos="zoom-in">
             <div className="relative">
                 <img className="w-full border border-[#00203f] h-80 object-cover rounded-2xl mb-4" src={image} alt="" />
                 <p className="bg-[#00203f] text-white absolute top-2 right-2 px-3 py-2 rounded-xl">{status}</p>
-                <p className="bg-green-600 text-white absolute top-2 left-2 px-3 py-2 rounded-xl">Price: {price}</p>
+                <p className="bg-green-600 text-white absolute top-2 left-2 px-3 py-2 rounded-xl">Price: {price}$</p>
             </div>
 
             <div className="flex flex-col gap-2 mb-2">

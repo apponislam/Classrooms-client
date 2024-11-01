@@ -1,6 +1,6 @@
 const Companies = () => {
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto" data-aos="fade-up" data-aos-duration="300">
             <div className="my-8 md:my-24">
                 <h1 className="text-center font-medium mb-8">Trusted by over 10,000 companies and million of learners around the world</h1>
                 <div className="flex items-center flex-wrap gap-4">
