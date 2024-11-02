@@ -54,6 +54,7 @@ const TeacherClassDetails = () => {
                 classId: Class._id,
                 assignmentTitle: data.assignmentTitle,
                 description: data.description,
+                marks: data.marks,
                 date: date,
             })
             .then((res) => {
@@ -150,6 +151,15 @@ const TeacherClassDetails = () => {
                                 )}
                             </div>
 
+                            <div className="mb-4">
+                                <input placeholder="Marks" type="number" className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("marks", { required: "Marks is required" })} aria-invalid={errors.marks ? "true" : "false"} />
+                                {errors.marks && (
+                                    <p className="text-red-600" role="alert">
+                                        {errors.marks.message}
+                                    </p>
+                                )}
+                            </div>
+
                             <div>
                                 <ReactDatePicker className="input input-bordered mb-4 border-[#00203f] border text-[#00203f] placeholder:text-[#00203f] w-full" selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect />
                             </div>
@@ -174,8 +184,9 @@ const TeacherClassDetails = () => {
                                 <th></th>
                                 <th>Assignment Title</th>
                                 <th>Description</th>
-                                <th>Last Date</th>
+                                <th>Marks</th>
                                 <th>Submits</th>
+                                <th>Last Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -185,8 +196,9 @@ const TeacherClassDetails = () => {
                                     <th>{index + 1}</th>
                                     <td>{assignment.assignmentTitle}</td>
                                     <td>{assignment.description}</td>
-                                    <td>{assignment.date}</td>
+                                    <td>{assignment.marks}</td>
                                     <td>{assignment?.submitedAssignments || 0}</td>
+                                    <td>{assignment.date}</td>
                                     <td>
                                         <Link to={`/dashboard/my-class/assignment/${assignment._id}`}>
                                             <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">Check</button>

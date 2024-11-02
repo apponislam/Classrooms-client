@@ -15,9 +15,9 @@ const TeacherAssignmentDetails = () => {
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Assignment Title</th>
-                                <th>Description</th>
-                                <th>Last Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Assignment Link</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
