@@ -34,6 +34,7 @@ import AdminRoute from "./Protected/AdminRoute.jsx";
 import TeacherRoute from "./Protected/TeacherRoute.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
 import "animate.css";
+import TeacherAssignmentDetails from "./Dashboard/TeacherClasses/TeacherAssignmentDetails.jsx";
 
 const router = createBrowserRouter([
     {
@@ -174,6 +175,15 @@ const router = createBrowserRouter([
                     </TeacherRoute>
                 ),
                 loader: ({ params }) => fetch(`https://classroom-server-mocha.vercel.app/Classes/${params.id}`),
+            },
+            {
+                path: "/dashboard/my-class/assignment/:id",
+                element: (
+                    <TeacherRoute>
+                        <TeacherAssignmentDetails></TeacherAssignmentDetails>
+                    </TeacherRoute>
+                ),
+                loader: ({ params }) => fetch(`https://classroom-server-mocha.vercel.app/AssignmentsSubmit/AssgnmentId/${params.id}`),
             },
             {
                 path: "/dashboard/myenroll-class",

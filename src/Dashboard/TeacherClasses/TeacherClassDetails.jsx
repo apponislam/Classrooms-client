@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { IoMdClose } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
@@ -175,7 +175,8 @@ const TeacherClassDetails = () => {
                                 <th>Assignment Title</th>
                                 <th>Description</th>
                                 <th>Last Date</th>
-                                {/* <th>Action</th> */}
+                                <th>Submits</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -185,8 +186,11 @@ const TeacherClassDetails = () => {
                                     <td>{assignment.assignmentTitle}</td>
                                     <td>{assignment.description}</td>
                                     <td>{assignment.date}</td>
+                                    <td>{assignment?.submitedAssignments || 0}</td>
                                     <td>
-                                        <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">Check</button>
+                                        <Link to={`/dashboard/my-class/assignment/${assignment._id}`}>
+                                            <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4">Check</button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}

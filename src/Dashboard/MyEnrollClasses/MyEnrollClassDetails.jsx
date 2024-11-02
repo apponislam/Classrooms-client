@@ -18,7 +18,11 @@ const MyEnrollClassDetails = () => {
     const navigate = useNavigate();
     // console.log(Class);
 
-    const { data: assignments = [], isLoading } = useQuery({
+    const {
+        data: assignments = [],
+        isLoading,
+        refetch,
+    } = useQuery({
         queryKey: ["usersclass"],
         queryFn: async () => {
             const res = await axiosPublic.get(`/Assignments/ClassId/${Class._id}`);
@@ -26,7 +30,7 @@ const MyEnrollClassDetails = () => {
         },
     });
 
-    console.log(assignments);
+    // console.log(assignments);
 
     const handleRatingChange = (newRating) => {
         setRating(newRating);
@@ -38,12 +42,6 @@ const MyEnrollClassDetails = () => {
         handleSubmit,
     } = useForm();
     const addFeedback = (data) => {
-        console.log(data, rating);
-        // const maindate = dates.split("/");
-        // const year = parseInt(maindate[0]);
-        // const month = parseInt(maindate[1]);
-        // const day = parseInt(maindate[2]);
-        // console.log(year, month, day);
         axiosPublic
             .post("/feedback", {
                 classId: Class._id,
@@ -59,22 +57,52 @@ const MyEnrollClassDetails = () => {
                 if (res.data.insertedId) {
                     toast.success("Feedback Given");
                     navigate("/dashboard/myenroll-class/");
-                    // axiosPublic.patch(`/Classes/assignmentsubmits/${Class._id}`).then((response) => {
-                    //     console.log(response.data);
-                    //     if (response.data.modifiedCount) {
-                    //         console.log("Assignment added");
-                    //     }
-                    // });
                 }
             });
         document.getElementById("my_modal_7").close();
     };
 
+    const {
+        register: submitAssignment,
+        formState: { errors: error },
+        reset,
+        handleSubmit: handleSubmit2,
+    } = useForm();
+    const submitAssignmentbtn = (data) => {
+        console.log(data);
+        axiosPublic
+            .post("/AssignmentsSubmit", {
+                name: user.displayName,
+                email: user.email,
+                assignmentId: data._id,
+                classId: data.classId,
+                assignmentLink: data.assignment,
+            })
+            .then((res) => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    console.log("data stored");
+                }
+            });
+        reset();
+        document.getElementById("my_modal_8").close();
+    };
+
+    // console.log(user);
+
     const submitAssignmentBtn = (e) => {
+        console.log(e);
         axiosPublic.patch(`/Classes/assignmentsubmits/${Class._id}`).then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             if (response.data.modifiedCount) {
                 toast.success(`${e.assignmentTitle} Assignment Submitted`);
+                axiosPublic.put(`/Assignments/Submits/${e.classId}`, { email: user.email }).then((response) => {
+                    // console.log(response.data);
+                    if (response.data.modifiedCount) {
+                        refetch();
+                        // toast.success(`${e.assignmentTitle} Assignment Submitted`);
+                    }
+                });
             }
         });
     };
@@ -104,9 +132,9 @@ const MyEnrollClassDetails = () => {
 
                         <form method="dialog" onSubmit={handleSubmit(addFeedback)}>
                             <div className="">
-                                <textarea placeholder="Description" type="text" className="h-32 input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("description", { required: "Description is required" })} aria-invalid={errors.password ? "true" : "false"} />
+                                <textarea placeholder="Description" type="text" className="p-3 h-32 input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("description", { required: "Description is required" })} aria-invalid={errors.password ? "true" : "false"} />
                                 {errors.description && (
-                                    <p className="text-red-600" role="alert">
+                                    <p className="text-red-600 my-2" role="alert">
                                         {errors.description.message}
                                     </p>
                                 )}
@@ -138,6 +166,7 @@ const MyEnrollClassDetails = () => {
                                     <th>Assignment Title</th>
                                     <th>Description</th>
                                     <th>Last Date</th>
+                                    <th>Marks</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -148,10 +177,17 @@ const MyEnrollClassDetails = () => {
                                         <td>{assignment.assignmentTitle}</td>
                                         <td>{assignment.description}</td>
                                         <td>{assignment.date}</td>
+                                        <td>{assignment.marks || "Not Given/100"}</td>
                                         <td>
-                                            <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full" onClick={() => document.getElementById("my_modal_8").showModal()}>
-                                                Submit
-                                            </button>
+                                            {assignment.submittedEmails.includes(user.email) ? (
+                                                <button className="text-gray-500 bg-gray-300 btn w-full" disabled>
+                                                    Submitted
+                                                </button>
+                                            ) : (
+                                                <button className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full" onClick={() => document.getElementById("my_modal_8").showModal()}>
+                                                    Submit
+                                                </button>
+                                            )}
                                             <dialog id="my_modal_8" className="modal modal-bottom sm:modal-middle">
                                                 <div className="modal-box border-2 border-[#00203f] rounded-2xl shadow-2xl p-3 xl:p-4">
                                                     <h3 className="font-bold text-2xl text-center my-4">Submit Assignment</h3>
@@ -161,22 +197,22 @@ const MyEnrollClassDetails = () => {
                                                         </button>
                                                     </form>
 
-                                                    <form method="dialog" onSubmit={handleSubmit(addFeedback)}>
+                                                    <form
+                                                        method="dialog"
+                                                        onSubmit={handleSubmit2((data) => {
+                                                            submitAssignmentbtn({ ...assignment, ...data });
+                                                            submitAssignmentBtn(assignment); // call this after form submission
+                                                        })}
+                                                    >
                                                         <div className="">
-                                                            <textarea placeholder="Description" type="text" className="h-32 input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("description", { required: "Description is required" })} aria-invalid={errors.password ? "true" : "false"} />
-                                                            {errors.description && (
-                                                                <p className="text-red-600" role="alert">
-                                                                    {errors.description.message}
+                                                            <textarea placeholder="Assignment Link" type="text" className="p-2 h-24 input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...submitAssignment("assignment", { required: "Assignment Link is required" })} aria-invalid={error.assignment ? "true" : "false"} />
+                                                            {error.assignment && (
+                                                                <p className="text-red-600 my-2" role="alert">
+                                                                    {error.assignment.message}
                                                                 </p>
                                                             )}
                                                         </div>
-
-                                                        {/* <div className="flex flex-col items-center justify-center">
-                                                            <ReactStars count={5} value={rating} onChange={handleRatingChange} size={24} activeColor="#ffd700" />
-                                                            <p>Your rating: {rating}</p>
-                                                        </div> */}
-                                                        {/* <input className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full" type="submit" value="Add assignment" /> */}
-                                                        <button onClick={() => submitAssignmentBtn(assignment)} className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full">
+                                                        <button type="submit" className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full">
                                                             Submit
                                                         </button>
                                                     </form>
