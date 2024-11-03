@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 
 const AllClasses = () => {
     const axiosPublic = useAxiosPublic();
@@ -66,6 +67,9 @@ const AllClasses = () => {
                                 icon: "success",
                             });
                             refetch();
+                        }
+                        if (res.data.matchedCount > 0) {
+                            toast.success("Already approved");
                         }
                     });
             }
