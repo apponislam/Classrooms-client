@@ -88,7 +88,7 @@ const TeacherClassDetails = () => {
         setTodayAssignments([...filteredAssignments, ...otherAssignments]);
     }, [assignments]);
 
-    console.log(todayAssignments);
+    // console.log(todayAssignments);
 
     if (isLoading) {
         return (
@@ -116,9 +116,17 @@ const TeacherClassDetails = () => {
             </div>
 
             <div>
-                <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full" onClick={() => document.getElementById("my_modal_7").showModal()}>
-                    <FaPlus /> Create Assignment
-                </button>
+                <div className="flex items-center justify-between">
+                    <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full" onClick={() => document.getElementById("my_modal_7").showModal()}>
+                        <FaPlus /> Create Assignment
+                    </button>
+                    <Link to={`/dashboard/my-class/${Class._id}/videos`}>
+                        <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full">
+                            <FaPlus /> Manage Video
+                        </button>
+                    </Link>
+                </div>
+
                 <dialog id="my_modal_7" className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box border-2 border-[#00203f] rounded-2xl shadow-2xl p-3 xl:p-4">
                         <h3 className="font-bold text-2xl text-center my-4">Create Assignment</h3>

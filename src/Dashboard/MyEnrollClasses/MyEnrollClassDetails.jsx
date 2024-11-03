@@ -1,6 +1,6 @@
-import { FaPlus } from "react-icons/fa";
+import { FaPlay, FaPlus } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { MoonLoader } from "react-spinners";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
@@ -113,6 +113,7 @@ const MyEnrollClassDetails = () => {
             });
 
         setError("");
+        e.target.reset();
 
         document.getElementById(modalID).close();
     };
@@ -146,9 +147,18 @@ const MyEnrollClassDetails = () => {
     return (
         <div>
             <div>
-                <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full" onClick={() => document.getElementById("my_modal_7").showModal()}>
-                    <FaPlus /> FeedBack Us
-                </button>
+                <div className="flex items-center justify-between">
+                    <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full" onClick={() => document.getElementById("my_modal_7").showModal()}>
+                        <FaPlus /> FeedBack Us
+                    </button>
+                    {/* /dashboard/myenroll-class/:id/Videos */}
+                    <Link to={`/dashboard/myenroll-class/${Class._id}/Videos`}>
+                        <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full">
+                            Continue watching <FaPlay />
+                        </button>
+                    </Link>
+                </div>
+
                 <dialog id="my_modal_7" className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box border-2 border-[#00203f] rounded-2xl shadow-2xl p-3 xl:p-4">
                         <h3 className="font-bold text-2xl text-center my-4">Feedback Us</h3>
@@ -193,7 +203,7 @@ const MyEnrollClassDetails = () => {
                                     <th></th>
                                     <th>Assignment Title</th>
                                     <th>Description</th>
-                                    <th>Marks</th>
+                                    <th>Total Marks</th>
                                     <th>Last Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -204,7 +214,7 @@ const MyEnrollClassDetails = () => {
                                         <th>{index + 1}</th>
                                         <td>{assignment.assignmentTitle}</td>
                                         <td>{assignment.description}</td>
-                                        <td>NotGiven/{assignment.marks || "Not Given/100"}</td>
+                                        <td>{assignment.marks}</td>
                                         <td>{assignment.date}</td>
                                         <td>
                                             {assignment?.submittedEmails?.includes(user.email) ? (

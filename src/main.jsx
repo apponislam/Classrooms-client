@@ -35,6 +35,8 @@ import TeacherRoute from "./Protected/TeacherRoute.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
 import "animate.css";
 import TeacherAssignmentDetails from "./Dashboard/TeacherClasses/TeacherAssignmentDetails.jsx";
+import ManageVideos from "./Dashboard/TeacherClasses/ManageVideos.jsx";
+import MyClassVideos from "./Dashboard/MyEnrollClasses/MyClassVideos.jsx";
 
 const router = createBrowserRouter([
     {
@@ -177,6 +179,15 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
             {
+                path: "/dashboard/my-class/:id/videos",
+                element: (
+                    <TeacherRoute>
+                        <ManageVideos></ManageVideos>
+                    </TeacherRoute>
+                ),
+                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+            },
+            {
                 path: "/dashboard/my-class/assignment/:id",
                 element: (
                     <TeacherRoute>
@@ -192,6 +203,11 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/myenroll-class/:id",
                 element: <MyEnrollClassDetails></MyEnrollClassDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
+            },
+            {
+                path: "/dashboard/myenroll-class/:id/Videos",
+                element: <MyClassVideos></MyClassVideos>,
                 loader: ({ params }) => fetch(`http://localhost:5000/Classes/${params.id}`),
             },
         ],
