@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
@@ -7,11 +7,36 @@ import { signOut, updateProfile } from "firebase/auth";
 import auth from "../../Firebase/firebase.config";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const Register = () => {
     const { createUser, setLoading } = useContext(AuthContext);
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
+
+    const [imageUrl, setImageUrl] = useState("");
+
+    const uploadImage = (file) => {
+        const formData = new FormData();
+        formData.append("image", file);
+
+        axios
+            .post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGAPI}`, formData)
+            .then((response) => {
+                setImageUrl(response.data.data.display_url);
+                console.log(response);
+                console.log(response.data.data.display_url);
+            })
+            .catch((error) => console.error(error));
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            uploadImage(file);
+        }
+    };
+
     const {
         register,
         formState: { errors },
@@ -36,14 +61,14 @@ const Register = () => {
                 console.log(result.user);
                 updateProfile(result.user, {
                     displayName: name,
-                    photoURL: imagelink,
+                    photoURL: imageUrl,
                 })
                     .then(() => {
                         toast.success("Registration Successfully");
                         axiosPublic
                             .post("/Users", {
                                 name: name,
-                                imagelink: imagelink,
+                                imagelink: imageUrl,
                                 number: number,
                                 email: email,
                                 role: "student",
@@ -68,6 +93,15 @@ const Register = () => {
             });
     };
 
+    // const handleSubmit2 = (e) => {
+    //     e.preventDefault();
+    //     console.log(e);
+    //     const file = e.target.image.files[0];
+    //     if (file) {
+    //         uploadImage(file);
+    //     }
+    // };
+
     return (
         <div className="container mx-auto">
             <Helmet>
@@ -85,11 +119,27 @@ const Register = () => {
                             )}
                         </div>
 
-                        <div className="mb-4">
+                        {/* <div className="mb-4">
                             <input placeholder="Image Link" type="text" className="input input-bordered w-full border-[#00203f] border text-[#00203f] placeholder:text-[#00203f]" {...register("image", { required: true })} aria-invalid={errors.image ? "true" : "false"} />
                             {errors.image?.type === "required" && (
                                 <p className="text-red-600" role="alert">
                                     Image Link is required
+                                </p>
+                            )}
+                        </div> */}
+
+                        <div className="mb-4">
+                            <input type="file" accept="image/*" onChange={handleImageChange} className="file-input w-full border-[#00203f] border" />
+                            {/* {imageUrl && <img src={imageUrl} alt="Uploaded preview" style={{ width: "100px" }} />} */}
+                            <input
+                                type="hidden"
+                                {...register("number", { required: true })}
+                                aria-invalid={errors.hidden ? "true" : "false"}
+                                defaultValue={imageUrl} // Hidden field to store image URL
+                            />
+                            {errors.hidden?.type === "required" && (
+                                <p className="text-red-600" role="alert">
+                                    Image is required
                                 </p>
                             )}
                         </div>
@@ -123,6 +173,20 @@ const Register = () => {
 
                         <input className="text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white btn w-full mb-4" type="submit" value="Register" />
                     </form>
+
+                    {/* <form onSubmit={handleSubmit2}>
+                        {imageUrl && (
+                            <div>
+                                <p>Image uploaded successfully:</p>
+                                <img src={imageUrl} alt="Uploaded" style={{ width: "200px" }} />
+                            </div>
+                        )}
+
+                        <input type="file" className="file-input w-full border-[#00203f] border" name="image" accept="image/*" />
+                        <button className="btn w-full" type="submit">
+                            Upload
+                        </button>
+                    </form> */}
 
                     <div>
                         <p>
