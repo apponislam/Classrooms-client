@@ -67,7 +67,7 @@ const TeacherClasses = () => {
     return (
         <div>
             <Helmet>
-                <title>Teacher Classes || Dashboard || Appon Classroom</title>
+                <title>Teacher Classes | Dashboard | AP Classroom</title>
             </Helmet>
             <h1 className="text-center font-bold text-2xl mb-8">Your Created Classes</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">

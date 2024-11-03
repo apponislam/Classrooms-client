@@ -70,7 +70,7 @@ const TechOn = () => {
     return (
         <div className="container mx-auto">
             <Helmet>
-                <title>Be A Teacher || Appon Classroom</title>
+                <title>Be A Teacher | AP Classroom</title>
             </Helmet>
             <div className="flex justify-center items-center h-screen mx-3 xl:mx-0">
                 {prolieuser?.role === "teacher" || prolieuser?.role === "admin" ? (

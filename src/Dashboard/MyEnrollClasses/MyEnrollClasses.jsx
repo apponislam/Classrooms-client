@@ -32,7 +32,7 @@ const MyEnrollClasses = () => {
     return (
         <div>
             <Helmet>
-                <title>My Classes || Dashboard || Appon Classroom</title>
+                <title>My Classes | Dashboard | AP Classroom</title>
             </Helmet>
             <h1 className="text-center font-bold text-2xl mb-8">Your Classes</h1>
 

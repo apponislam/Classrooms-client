@@ -29,7 +29,7 @@ const Payment = () => {
     return (
         <div className="container mx-auto">
             <Helmet>
-                <title>Payment || Appon Classroom</title>
+                <title>Payment | AP Classroom</title>
             </Helmet>
             <div className="h-screen flex items-center justify-center mx-4 md:mx-0">
                 <div className="w-full md:w-1/2 border border-[#00203f] p-4 rounded-2xl shadow-2xl">

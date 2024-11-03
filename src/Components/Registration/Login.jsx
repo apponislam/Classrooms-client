@@ -86,7 +86,7 @@ const Login = () => {
     return (
         <div className="container mx-auto">
             <Helmet>
-                <title>Login || Appon Classroom</title>
+                <title>Login | AP Classroom</title>
             </Helmet>
             <div className="h-screen flex items-center justify-center">
                 <div className="w-96 border border-[#00203f] p-4 rounded-2xl shadow-2xl" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="400">

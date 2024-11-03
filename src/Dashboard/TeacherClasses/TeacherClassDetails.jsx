@@ -12,6 +12,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import { MoonLoader } from "react-spinners";
+import { Helmet } from "react-helmet-async";
 
 const TeacherClassDetails = () => {
     const { user } = useContext(AuthContext);
@@ -100,6 +101,9 @@ const TeacherClassDetails = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>{Class.title} | Dashboard | AP Classroom</title>
+            </Helmet>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 mb-4">
                 <div className="border border-[#00203f] p-4 rounded-2xl shadow-2xl">
                     <h1 className="text-2xl text-center mb-4 font-bold">Total Enrollment</h1>

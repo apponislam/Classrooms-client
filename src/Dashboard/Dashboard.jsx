@@ -42,7 +42,7 @@ const Dashboard = () => {
     return (
         <div>
             <Helmet>
-                <title>Dashboard || Appon Classroom</title>
+                <title>Dashboard | AP Classroom</title>
             </Helmet>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

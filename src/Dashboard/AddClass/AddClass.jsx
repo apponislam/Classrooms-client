@@ -44,7 +44,7 @@ const AddClass = () => {
     return (
         <div className="flex justify-center items-center h-screen">
             <Helmet>
-                <title>Add Your Class || Dashboard || Appon Classroom</title>
+                <title>Add Your Class | Dashboard | AP Classroom</title>
             </Helmet>
             <div className="w-full md:w-1/2 border border-[#00203f] p-4 rounded-2xl shadow-2xl" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="300">
                 <form onSubmit={handleSubmit(addClass)}>

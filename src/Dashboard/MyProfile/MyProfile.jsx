@@ -34,7 +34,7 @@ const MyProfile = () => {
     return (
         <div className="flex justify-center items-center h-screen">
             <Helmet>
-                <title>My Profile || Dashboard || Appon Classroom</title>
+                <title>My Profile | Dashboard | AP Classroom</title>
             </Helmet>
             <div className="w-full md:w-1/2 border border-[#00203f] p-4 rounded-2xl shadow-2xl" data-aos="zoom-in-down">
                 <div className="flex flex-col items-center justify-center">

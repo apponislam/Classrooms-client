@@ -49,7 +49,7 @@ const ApprovedClasses = () => {
     return (
         <div className="container mx-auto">
             <Helmet>
-                <title>All Classes || Appon Classroom</title>
+                <title>All Classes | AP Classroom</title>
             </Helmet>
             <div className="mx-4 xl:mx-0 my-10 md:my-20">
                 <h1 className="text-center text-2xl font-bold mb-8">Classes - {count}</h1>

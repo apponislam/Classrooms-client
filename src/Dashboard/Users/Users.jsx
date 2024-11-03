@@ -97,7 +97,7 @@ const Users = () => {
     return (
         <div>
             <Helmet>
-                <title>Users || Dashboard || Appon Classroom</title>
+                <title>Users | Dashboard | AP Classroom</title>
             </Helmet>
             <h1 className="text-center text-3xl font-bold">Total Users: {count}</h1>
             <div>

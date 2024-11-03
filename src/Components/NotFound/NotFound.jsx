@@ -5,7 +5,7 @@ const NotFound = () => {
     return (
         <div className="h-screen flex flex-col justify-center items-center">
             <Helmet>
-                <title>Not Found || Appon Classroom</title>
+                <title>Not Found | AP Classroom</title>
             </Helmet>
             <h1 className="text-5xl mb-10 font-bold">Opps Sorry</h1>
             <p className="text-center text-2xl"> 404 - Not Found</p>

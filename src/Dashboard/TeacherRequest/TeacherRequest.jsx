@@ -98,7 +98,7 @@ const TeacherRequest = () => {
         <div>
             <h1 className="text-center font-bold text-2xl">Review Teacher Request</h1>
             <Helmet>
-                <title>Review Teacher Request || Dashboard || Appon Classroom</title>
+                <title>Review Teacher Request | Dashboard | AP Classroom</title>
             </Helmet>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5">
                 {teacherPending.map((teacher) => (

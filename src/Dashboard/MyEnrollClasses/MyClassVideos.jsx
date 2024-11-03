@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { MoonLoader } from "react-spinners";
 import { FaPlay } from "react-icons/fa";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const MyClassVideos = () => {
     const Class = useLoaderData();
@@ -70,6 +71,9 @@ const MyClassVideos = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Continue - {Class.title} | Dashboard | AP Classroom</title>
+            </Helmet>
             <div className="flex flex-col md:flex-row gap-4 h-auto items-start">
                 <div className="w-full md:w-3/5">
                     <iframe className="sm:h-[50vh] w-full h-60" src={`https://www.youtube.com/embed/${playing}?autoplay=1`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>

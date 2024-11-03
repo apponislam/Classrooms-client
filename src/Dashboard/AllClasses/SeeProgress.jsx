@@ -37,7 +37,7 @@ const SeeProgress = () => {
     return (
         <div>
             <Helmet>
-                <title>{title} || Dashboard || Appon Classroom</title>
+                <title>{title} | Dashboard | AP Classroom</title>
             </Helmet>
             <h1 className="text-2xl mb-6 font-bold text-center">Class Full Details</h1>
             <div className="border border-[#00203f] p-4 rounded-xl grid grid-cols-1 gap-4 md:grid-cols-2">

@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { MoonLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageVideos = () => {
     const { user } = useContext(AuthContext);
@@ -141,6 +142,9 @@ const ManageVideos = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Manage Video | {Class.title} | Dashboard | AP Classroom</title>
+            </Helmet>
             <div>
                 <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full" onClick={() => document.getElementById("my_modal_5").showModal()}>
                     <FaPlus /> Add Video

@@ -9,6 +9,7 @@ import ReactStars from "react-rating-stars-component";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const MyEnrollClassDetails = () => {
     const { user } = useContext(AuthContext);
@@ -146,6 +147,9 @@ const MyEnrollClassDetails = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>{Class.title} | My Class | Dashboard | AP Classroom</title>
+            </Helmet>
             <div>
                 <div className="flex items-center justify-between">
                     <button className="btn text-white bg-[#00203f] h-auto hover:bg-[#00203f] hover:text-white rounded-full" onClick={() => document.getElementById("my_modal_7").showModal()}>
