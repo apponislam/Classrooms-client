@@ -13,7 +13,7 @@ const Login = () => {
     const axiosPublic = useAxiosPublic();
     const nvaigate = useNavigate();
     const location = useLocation();
-    console.log(location);
+    // console.log(location);
 
     const {
         register,
@@ -21,7 +21,7 @@ const Login = () => {
         handleSubmit,
     } = useForm();
     const signInBtn = (data) => {
-        console.log(data);
+        // console.log(data);
         const { email, password } = data;
         signInUser(email, password)
             .then((result) => {
