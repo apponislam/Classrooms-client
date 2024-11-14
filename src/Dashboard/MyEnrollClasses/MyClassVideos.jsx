@@ -27,8 +27,8 @@ const MyClassVideos = () => {
     const [playing, setPlayying] = useState("");
     const [currentIndex, setCurrentIndex] = useState(-1);
     const playVideo = (video, index) => {
-        console.log(video);
-        console.log(index);
+        // console.log(video);
+        // console.log(index);
 
         function getYouTubeVideoID(url) {
             const urlObj = new URL(url);
@@ -87,13 +87,15 @@ const MyClassVideos = () => {
                         </button>
                     </div>
                 </div>
-                <div className="flex-1 w-full border border-[#00203f] rounded-2xl">
-                    {videos.map((video, index) => (
-                        <div className="flex items-center p-3 gap-3 text-[#00203f]" onClick={() => playVideo(video, index)} key={video._id}>
-                            <FaPlay />
-                            <p className="font-bold">{video.videoTitle}</p>
-                        </div>
-                    ))}
+                <div className="flex-1 w-full border border-[#00203f] rounded-2xl p-4">
+                    <div className="flex items-center flex-col gap-2">
+                        {videos.map((video, index) => (
+                            <div className={`flex w-full items-center p-3 gap-3 rounded-xl ${currentIndex === index ? "bg-green-500 text-white" : "bg-[#adefd1] text-[#00203f]"}`} onClick={() => playVideo(video, index)} key={video._id}>
+                                <FaPlay />
+                                <p className="font-bold">{video.videoTitle}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
