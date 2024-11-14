@@ -67,6 +67,10 @@ a.mainnav:hover {
     }
 }
 
+.swiper-wrapper {
+    width: 100%;
+}
+
 .slideup {
     opacity: 0;
     transform: translateY(50px);

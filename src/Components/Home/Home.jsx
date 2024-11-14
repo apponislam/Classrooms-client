@@ -10,7 +10,7 @@ import Total from "./Total";
 
 const Home = () => {
     return (
-        <div>
+        <div className="w-full overflow-hidden">
             <Helmet>
                 <title>AP Classroom | Home</title>
             </Helmet>
