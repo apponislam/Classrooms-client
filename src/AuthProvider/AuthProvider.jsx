@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../Firebase/firebase.config.js";
 import useAxiosPublic from "../Hooks/useAxiosPublic.jsx";
 
@@ -38,6 +38,15 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     };
 
+    const updateUser = (name, image) => {
+        console.log(name, image);
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: image,
+            // phoneNumber: data.number,
+        });
+    };
+
     // Ovserver On State Change
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (mainUser) => {
@@ -61,7 +70,7 @@ const AuthProvider = ({ children }) => {
         return () => unSubscribe();
     }, [axiosPublic]);
 
-    const info = { createUser, signInUser, user, googleSignIn, githubSignIn, logOut, loading, setLoading };
+    const info = { createUser, signInUser, user, googleSignIn, githubSignIn, logOut, loading, setLoading, updateUser };
 
     return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };

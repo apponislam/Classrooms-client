@@ -41,15 +41,7 @@ const TeacherClassDetails = () => {
         handleSubmit,
     } = useForm();
     const addAssignment = (data) => {
-        // console.log(data);
         const date = format(startDate, "yyyy/MM/dd");
-        // console.log(date);
-        // const maindate = dates.split("/");
-        // const year = parseInt(maindate[0]);
-        // const month = parseInt(maindate[1]);
-        // const day = parseInt(maindate[2]);
-        // console.log(year, month, day);
-
         axiosPublic
             .post("/Assignments", {
                 classId: Class._id,
